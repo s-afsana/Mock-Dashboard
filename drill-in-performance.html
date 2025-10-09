@@ -253,11 +253,11 @@
         <!-- Rep KPIs -->
         <div class="kpi-grid">
             <div class="kpi-mini">
-                <div class="kpi-mini-value" id="repJobs">12</div>
+                <div class="kpi-mini-value" id="repJobs">672</div>
                 <div class="kpi-mini-label">Jobs</div>
             </div>
             <div class="kpi-mini">
-                <div class="kpi-mini-value" id="repCloseRate">58%</div>
+                <div class="kpi-mini-value" id="repCloseRate">68%</div>
                 <div class="kpi-mini-label">Close Rate</div>
             </div>
             <div class="kpi-mini">
@@ -265,7 +265,7 @@
                 <div class="kpi-mini-label">Avg Ticket</div>
             </div>
             <div class="kpi-mini">
-                <div class="kpi-mini-value" id="repRevenue">$8,640</div>
+                <div class="kpi-mini-value" id="repRevenue">$483,840</div>
                 <div class="kpi-mini-label">Revenue MTD</div>
             </div>
         </div>
@@ -308,7 +308,7 @@
                 <div class="funnel-stage">
                     <span class="stage-label">Won</span>
                     <div class="stage-bar">
-                        <div class="stage-fill won" style="width: 25%"></div>
+                        <div class="stage-fill won" style="width: 29%"></div>
                     </div>
                     <span class="stage-count" id="wonCount">7</span>
                 </div>
@@ -320,87 +320,119 @@
             <h3 style="margin-bottom: 1.5rem; color: #1e293b;">Top Job Categories</h3>
             <div class="category-item">
                 <span class="category-name">HVAC Installation</span>
-                <span class="category-revenue">$3,240</span>
+                <span class="category-revenue">$195,200</span>
             </div>
             <div class="category-item">
                 <span class="category-name">Plumbing Repair</span>
-                <span class="category-revenue">$2,160</span>
+                <span class="category-revenue">$145,150</span>
             </div>
             <div class="category-item">
                 <span class="category-name">Electrical Service</span>
-                <span class="category-revenue">$1,800</span>
+                <span class="category-revenue">$96,770</span>
             </div>
             <div class="category-item">
                 <span class="category-name">Maintenance</span>
-                <span class="category-revenue">$1,440</span>
+                <span class="category-revenue">$46,720</span>
             </div>
         </div>
     </div>
     
     <script>
         // Rep data
+ 	
         const repData = {
             ava: {
                 name: 'Ava',
-                jobs: 12,
-                closeRate: 58,
+                jobs: 672,
+                closeRate: 68,
                 avgTicket: 720,
-                revenue: 8640,
+                revenue: 483840,
                 leads: 24,
                 qualified: 18,
                 quoted: 12,
                 won: 7,
-                trend: [6500, 7200, 6800, 7500, 8200, 8640]
+                trend: [6500, 7200, 6800, 7500, 8200, 8640],
+                categories: [
+                    { name: 'HVAC Installation', revenue: 195200 },
+                    { name: 'Plumbing Repair', revenue: 145150 },
+                    { name: 'Electrical Service', revenue: 96770 },
+                    { name: 'Maintenance', revenue: 46720 }
+                ]
             },
             noah: {
                 name: 'Noah',
-                jobs: 15,
+                jobs: 615,
                 closeRate: 47,
                 avgTicket: 650,
-                revenue: 9750,
+                revenue: 399750,
                 leads: 32,
                 qualified: 20,
                 quoted: 15,
                 won: 7,
-                trend: [8000, 8500, 7800, 9000, 9200, 9750]
+                trend: [8000, 8500, 7800, 9000, 9200, 9750],
+                categories: [
+                    { name: 'HVAC Installation', revenue: 160000 },
+                    { name: 'Plumbing Repair', revenue: 120000 },
+                    { name: 'Electrical Service', revenue: 80000 },
+                    { name: 'Maintenance', revenue: 39750 }
+                ]
             },
             marcus: {
                 name: 'Marcus',
-                jobs: 18,
+                jobs: 518,
                 closeRate: 61,
-                avgTicket: 710,
-                revenue: 12780,
+                avgTicket: 510,
+                revenue: 264180,
                 leads: 30,
                 qualified: 22,
                 quoted: 18,
                 won: 11,
-                trend: [10000, 11000, 10500, 12000, 12500, 12780]
+                trend: [10000, 11000, 10500, 12000, 12500, 12780],
+                categories: [
+                    { name: 'HVAC Installation', revenue: 105000 },
+                    { name: 'Plumbing Repair', revenue: 80000 },
+                    { name: 'Electrical Service', revenue: 50000 },
+                    { name: 'Maintenance', revenue: 29180 }
+                ]
             },
             sophie: {
                 name: 'Sophie',
-                jobs: 8,
+                jobs: 208,
                 closeRate: 50,
                 avgTicket: 680,
-                revenue: 5440,
+                revenue: 141440,
                 leads: 16,
                 qualified: 12,
                 quoted: 8,
                 won: 4,
-                trend: [4000, 4500, 4200, 4800, 5200, 5440]
+                trend: [4000, 4500, 4200, 4800, 5200, 5440],
+                categories: [
+                    { name: 'HVAC Installation', revenue: 56000 },
+                    { name: 'Plumbing Repair', revenue: 42000 },
+                    { name: 'Electrical Service', revenue: 28000 },
+                    { name: 'Maintenance', revenue: 15440 }
+                ]
             },
             liam: {
                 name: 'Liam',
-                jobs: 14,
-                closeRate: 54,
+                jobs: 714,
+                closeRate: 64,
                 avgTicket: 695,
-                revenue: 9730,
+                revenue: 496230,
                 leads: 26,
                 qualified: 19,
                 quoted: 14,
                 won: 8,
-                trend: [7000, 7500, 7200, 8000, 9000, 9730]
+                trend: [7000, 7500, 7200, 8000, 9000, 9730],
+                categories: [
+                    { name: 'HVAC Installation', revenue: 200000 },
+                    { name: 'Plumbing Repair', revenue: 150000 },
+                    { name: 'Electrical Service', revenue: 100000 },
+                    { name: 'Maintenance', revenue: 46230 }
+                ]
             }
         };
+
         
         let currentRep = 'ava';
         let revenueChart;
@@ -446,6 +478,17 @@
                 revenueChart.data.datasets[0].data = data.trend;
                 revenueChart.update();
             }
+            
+            // Update job categories
+            const categoryItems = document.querySelectorAll('.category-item');
+            data.categories.forEach((category, index) => {
+                if (categoryItems[index]) {
+                    const nameElement = categoryItems[index].querySelector('.category-name');
+                    const revenueElement = categoryItems[index].querySelector('.category-revenue');
+                    if (nameElement) nameElement.textContent = category.name;
+                    if (revenueElement) revenueElement.textContent = '$' + category.revenue.toLocaleString();
+                }
+            });
         }
         
         function initializeChart() {

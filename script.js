@@ -1,28 +1,23 @@
 // Mock data for the dashboard
-const mockData = {
-    mtd: {
-        revenue: { value: 847250, goal: 1000000, percentage: 84.7 },
-        closeRate: { value: 52.3, benchmark: 48.1, difference: 4.2 },
-        avgTicket: { value: 687, targetMin: 650, targetMax: 750 },
-        activeLearners: { value: 47, engagement: 78 }
+// Mock data for the dashboard
+const mockData = {
+    mtd: {
+        revenue: { value: 847250, goal: 1000000, percentage: 84.7 },
+        closeRate: { value: 64.6, benchmark: 58.1, difference: 6.5},
+        avgTicket: { value: 787, targetMin: 650, targetMax: 900 },
+        activeLearners: { value: 47, engagement: 78 }
     },
-    qtd: {
-        revenue: { value: 2340000, goal: 3000000, percentage: 78.0 },
-        closeRate: { value: 49.8, benchmark: 48.1, difference: 1.7 },
-        avgTicket: { value: 692, targetMin: 650, targetMax: 750 },
-        activeLearners: { value: 52, engagement: 82 }
+    qtd: {
+        revenue: { value: 2340000, goal: 3000000, percentage: 78.0 },
+        closeRate: { value: 62.3, benchmark: 58.1, difference: 4.2 },
+        avgTicket: { value: 792, targetMin: 650, targetMax: 900 },
+        activeLearners: { value: 52, engagement: 82 }
     },
-    '7months': {
-        revenue: { value: 15600000, goal: 18000000, percentage: 86.7 },
-        closeRate: { value: 51.2, benchmark: 48.1, difference: 3.1 },
-        avgTicket: { value: 678, targetMin: 650, targetMax: 750 },
-        activeLearners: { value: 45, engagement: 75 }
-    },
-    ytd: {
-        revenue: { value: 8900000, goal: 12000000, percentage: 74.2 },
-        closeRate: { value: 50.5, benchmark: 48.1, difference: 2.4 },
-        avgTicket: { value: 685, targetMin: 650, targetMax: 750 },
-        activeLearners: { value: 48, engagement: 79 }
+    ytd: {
+        revenue: { value: 8900000, goal: 12000000, percentage: 74.2 },
+        closeRate: { value: 51.2, benchmark: 48.1, difference: 3.1 },
+        avgTicket: { value: 778, targetMin: 650, targetMax: 900 },
+        activeLearners: { value: 48, engagement: 79 }
     }
 };
 
@@ -66,7 +61,7 @@ const performanceData = {
         },
         {
             label: 'Goal',
-            data: [800000, 800000, 800000, 800000, 800000, 1000000],
+            data: [900000, 900000, 900000, 1000000, 1000000, 1000000],
             borderColor: '#ef4444',
             backgroundColor: 'rgba(239, 68, 68, 0.1)',
             borderWidth: 2,
@@ -75,8 +70,59 @@ const performanceData = {
         }
     ]
 };
+    
 
 // Training correlation data
+// Shared Training Attendance Data
+const trainingAttendanceData = {
+    departments: {
+        'Customer Service': {
+            lastQuarter: { attended: 4.1, total: 6, employees: 8 },
+            yearToDate: { attended: 10.2, total: 12, employees: 8 },
+            employees: [
+                { name: 'Sarah Johnson', lastQuarter: 4, yearToDate: 10, classes: ['Safety Training', 'Customer Service', 'Communication', 'Product Knowledge'] },
+                { name: 'Mike Chen', lastQuarter: 5, yearToDate: 11, classes: ['Safety Training', 'Customer Service', 'Communication', 'Product Knowledge', 'Conflict Resolution'] },
+                { name: 'Emily Davis', lastQuarter: 3, yearToDate: 9, classes: ['Safety Training', 'Customer Service', 'Communication'] },
+                { name: 'David Wilson', lastQuarter: 4, yearToDate: 10, classes: ['Safety Training', 'Customer Service', 'Communication', 'Product Knowledge'] },
+                { name: 'Lisa Brown', lastQuarter: 5, yearToDate: 12, classes: ['Safety Training', 'Customer Service', 'Communication', 'Product Knowledge', 'Conflict Resolution', 'Advanced Techniques'] },
+                { name: 'Tom Anderson', lastQuarter: 4, yearToDate: 10, classes: ['Safety Training', 'Customer Service', 'Communication', 'Product Knowledge'] },
+                { name: 'Rachel Green', lastQuarter: 4, yearToDate: 10, classes: ['Safety Training', 'Customer Service', 'Communication', 'Product Knowledge'] },
+                { name: 'Chris Taylor', lastQuarter: 4, yearToDate: 10, classes: ['Safety Training', 'Customer Service', 'Communication', 'Product Knowledge'] }
+            ]
+        },
+        'Dispatch': {
+            lastQuarter: { attended: 1.8, total: 6, employees: 5 },
+            yearToDate: { attended: 9.5, total: 12, employees: 5 },
+            employees: [
+                { name: 'Alex Rodriguez', lastQuarter: 2, yearToDate: 10, classes: ['Dispatch Systems', 'Emergency Procedures'] },
+                { name: 'Maria Garcia', lastQuarter: 1, yearToDate: 8, classes: ['Dispatch Systems'] },
+                { name: 'James Smith', lastQuarter: 2, yearToDate: 10, classes: ['Dispatch Systems', 'Emergency Procedures'] },
+                { name: 'Jennifer Lee', lastQuarter: 2, yearToDate: 10, classes: ['Dispatch Systems', 'Emergency Procedures'] },
+                { name: 'Robert Kim', lastQuarter: 2, yearToDate: 10, classes: ['Dispatch Systems', 'Emergency Procedures'] }
+            ]
+        },
+        'Plumbers': {
+            lastQuarter: { attended: 5.5, total: 6, employees: 4 },
+            yearToDate: { attended: 8.3, total: 12, employees: 4 },
+            employees: [
+                { name: 'Pablo Escobar', lastQuarter: 6, yearToDate: 12, classes: ['Plumbing Basics', 'Advanced Techniques', 'Safety Protocols', 'Code Compliance', 'Emergency Repairs', 'Customer Service'] },
+                { name: 'Nick Fergis', lastQuarter: 5, yearToDate: 10, classes: ['Plumbing Basics', 'Advanced Techniques', 'Safety Protocols', 'Code Compliance', 'Emergency Repairs'] },
+                { name: 'Bob Carter', lastQuarter: 5, yearToDate: 10, classes: ['Plumbing Basics', 'Advanced Techniques', 'Safety Protocols', 'Code Compliance', 'Emergency Repairs'] },
+                { name: 'Miguel Herhandez', lastQuarter: 6, yearToDate: 12, classes: ['Plumbing Basics', 'Advanced Techniques', 'Safety Protocols', 'Code Compliance', 'Emergency Repairs', 'Customer Service'] }
+            ]
+        },
+        'Management': {
+            lastQuarter: { attended: 3.0, total: 3, employees: 3 },
+            yearToDate: { attended: 5.0, total: 6, employees: 3 },
+            employees: [
+                { name: 'John Manager', lastQuarter: 3, yearToDate: 6, classes: ['Leadership', 'Team Management', 'Strategic Planning', 'Performance Management', 'Budget Planning', 'Communication'] },
+                { name: 'Jane Director', lastQuarter: 3, yearToDate: 6, classes: ['Leadership', 'Team Management', 'Strategic Planning', 'Performance Management', 'Budget Planning', 'Communication'] },
+                { name: 'Mark Supervisor', lastQuarter: 3, yearToDate: 6, classes: ['Leadership', 'Team Management', 'Strategic Planning', 'Performance Management', 'Budget Planning', 'Communication'] }
+            ]
+        }
+    }
+};
+
 const correlationData = {
     labels: ['Training Hours', 'Close Rate', 'Avg Ticket', 'Revenue'],
     datasets: [
@@ -155,6 +201,16 @@ function updateKPIs(timeRange) {
     
     // Update Revenue
     const revenueCard = document.querySelector('.kpi-card:nth-child(1)');
+    const revenueTitle = revenueCard.querySelector('.kpi-header h3');
+    
+    // Update title based on time range
+    const timeRangeLabels = {
+        'mtd': 'Revenue (MTD)',
+        'qtd': 'Revenue (QTD)',
+        'ytd': 'Revenue (YTD)'
+    };
+    revenueTitle.textContent = timeRangeLabels[timeRange] || 'Revenue (MTD)';
+    
     revenueCard.querySelector('.kpi-value').textContent = `$${data.revenue.value.toLocaleString()}`;
     revenueCard.querySelector('.progress-fill').style.width = `${data.revenue.percentage}%`;
     revenueCard.querySelector('.progress-text').textContent = `${data.revenue.percentage}% of $${(data.revenue.goal / 1000000).toFixed(1)}M goal`;
@@ -179,33 +235,20 @@ function updateKPIs(timeRange) {
 
 // Initialize charts
 function initializeCharts() {
-    // Training Attendance Chart
-    const trainingCtx = document.getElementById('trainingChart').getContext('2d');
-    new Chart(trainingCtx, {
-        type: 'bar',
-        data: trainingData,
+    // Correlation Chart (Pie Chart)
+    const correlationCtx = document.getElementById('correlationChart').getContext('2d');
+    new Chart(correlationCtx, {
+        type: 'doughnut',
+        data: correlationData,
         options: {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    position: 'top',
+                    position: 'bottom',
                     labels: {
                         usePointStyle: true,
                         padding: 20
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)'
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
                     }
                 }
             }
@@ -247,27 +290,6 @@ function initializeCharts() {
                     }
                 }
             }
-        }
-    });
-    
-    // Correlation Chart
-    const correlationCtx = document.getElementById('correlationChart').getContext('2d');
-    new Chart(correlationCtx, {
-        type: 'doughnut',
-        data: correlationData,
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        usePointStyle: true,
-                        padding: 15
-                    }
-                }
-            },
-            cutout: '60%'
         }
     });
 }

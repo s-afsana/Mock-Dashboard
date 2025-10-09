@@ -38,7 +38,6 @@
             <select id="timeRange" onchange="updateDashboard()">
                 <option value="mtd">MTD</option>
                 <option value="qtd">QTD</option>
-                <option value="7months">Last 7 Months</option>
                 <option value="ytd">YTD</option>
             </select>
         </div>
@@ -46,11 +45,6 @@
             <label>Rep:</label>
             <select id="repFilter" onchange="updateDashboard()">
                 <option value="all">All</option>
-                <option value="ava">Ava</option>
-                <option value="noah">Noah</option>
-                <option value="marcus">Marcus</option>
-                <option value="sophie">Sophie</option>
-                <option value="liam">Liam</option>
             </select>
         </div>
     </div>
@@ -76,10 +70,10 @@
                 <h3>Close Rate (%)</h3>
                 <i class="fas fa-percentage"></i>
             </div>
-            <div class="kpi-value">52.3%</div>
+            <div class="kpi-value">64.6%</div>
             <div class="kpi-benchmark">
-                <span class="benchmark-label">vs. 48.1% peer avg</span>
-                <span class="benchmark-indicator positive">+4.2%</span>
+                <span class="benchmark-label">vs. 58.1% peer avg</span>
+                <span class="benchmark-indicator positive">+6.5%</span>
             </div>
         </div>
 
@@ -88,9 +82,9 @@
                 <h3>Average Ticket ($)</h3>
                 <i class="fas fa-receipt"></i>
             </div>
-            <div class="kpi-value">$687</div>
+            <div class="kpi-value">$787</div>
             <div class="kpi-target">
-                <span class="target-label">Target: $650-$750</span>
+                <span class="target-label">Target: $650-$900</span>
                 <span class="target-status in-range">✓ In Range</span>
             </div>
         </div>
@@ -113,86 +107,47 @@
 
     <!-- Main Dashboard Panels -->
     <div class="dashboard-grid">
-        <!-- Panel 1: Training Attendance -->
+        <!-- Panel 1: Training Attendance Scorecard -->
         <div class="panel">
             <div class="panel-header">
                 <h3>Training Attendance</h3>
                 <a href="drill-in-training.html" class="drill-link">View details →</a>
             </div>
             <div class="panel-content">
-                <canvas id="trainingChart"></canvas>
-            </div>
-        </div>
-
-        <!-- Panel 2: Training Session Heatmap -->
-        <div class="panel">
-            <div class="panel-header">
-                <h3>Training Session Attendance</h3>
-            </div>
-            <div class="panel-content">
-                <div class="heatmap-container">
-                    <div class="heatmap">
-                        <div class="heatmap-header">
-                            <div class="time-label"></div>
-                            <div class="day-label">Mon</div>
-                            <div class="day-label">Tue</div>
-                            <div class="day-label">Wed</div>
-                            <div class="day-label">Thu</div>
-                            <div class="day-label">Fri</div>
-                        </div>
-                        <div class="heatmap-row">
-                            <div class="time-slot">8AM</div>
-                            <div class="heat-cell low" title="Monday 8AM: 2 attendees">2</div>
-                            <div class="heat-cell medium" title="Tuesday 8AM: 5 attendees">5</div>
-                            <div class="heat-cell high" title="Wednesday 8AM: 12 attendees">12</div>
-                            <div class="heat-cell medium" title="Thursday 8AM: 6 attendees">6</div>
-                            <div class="heat-cell low" title="Friday 8AM: 3 attendees">3</div>
-                        </div>
-                        <div class="heatmap-row">
-                            <div class="time-slot">10AM</div>
-                            <div class="heat-cell medium" title="Monday 10AM: 7 attendees">7</div>
-                            <div class="heat-cell high" title="Tuesday 10AM: 15 attendees">15</div>
-                            <div class="heat-cell high" title="Wednesday 10AM: 18 attendees">18</div>
-                            <div class="heat-cell high" title="Thursday 10AM: 14 attendees">14</div>
-                            <div class="heat-cell medium" title="Friday 10AM: 8 attendees">8</div>
-                        </div>
-                        <div class="heatmap-row">
-                            <div class="time-slot">2PM</div>
-                            <div class="heat-cell high" title="Monday 2PM: 16 attendees">16</div>
-                            <div class="heat-cell high" title="Tuesday 2PM: 19 attendees">19</div>
-                            <div class="heat-cell medium" title="Wednesday 2PM: 11 attendees">11</div>
-                            <div class="heat-cell high" title="Thursday 2PM: 17 attendees">17</div>
-                            <div class="heat-cell high" title="Friday 2PM: 13 attendees">13</div>
-                        </div>
-                        <div class="heatmap-row">
-                            <div class="time-slot">4PM</div>
-                            <div class="heat-cell medium" title="Monday 4PM: 9 attendees">9</div>
-                            <div class="heat-cell low" title="Tuesday 4PM: 4 attendees">4</div>
-                            <div class="heat-cell low" title="Wednesday 4PM: 3 attendees">3</div>
-                            <div class="heat-cell medium" title="Thursday 4PM: 7 attendees">7</div>
-                            <div class="heat-cell low" title="Friday 4PM: 2 attendees">2</div>
-                        </div>
+                <div class="scorecard-table">
+                    <div class="table-header">
+                        <div class="dept-column">Department</div>
+                        <div class="score-column">Last Quarter Dept Avg</div>
+                        <div class="score-column">Year to Date Dept Avg</div>
                     </div>
-                    <div class="heatmap-legend">
-                        <div class="legend-title">Attendance Level</div>
-                        <div class="legend-items">
-                            <div class="legend-item">
-                                <div class="legend-color low"></div>
-                                <span>Low (1-5)</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-color medium"></div>
-                                <span>Medium (6-10)</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-color high"></div>
-                                <span>High (11+)</span>
-                            </div>
-                        </div>
+                    
+                    <div class="table-row">
+                        <div class="dept-cell">Customer Service</div>
+                        <div class="score-cell yellow">4.1 / 6</div>
+                        <div class="score-cell green">10.2 / 12</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="dept-cell">Dispatch</div>
+                        <div class="score-cell red">1.8 / 6</div>
+                        <div class="score-cell yellow">9.5 / 12</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="dept-cell">Plumbers</div>
+                        <div class="score-cell green">5.5 / 6</div>
+                        <div class="score-cell yellow">8.3 / 12</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="dept-cell">Management</div>
+                        <div class="score-cell green">3.0 / 3</div>
+                        <div class="score-cell green">5.0 / 6</div>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <!-- Panel 3: Job Performance -->
         <div class="panel">
@@ -208,28 +163,28 @@
                     <div class="rep-tile">
                         <div class="rep-name">Ava</div>
                         <div class="rep-stats">
-                            <span>12 jobs</span>
-                            <span>58% close</span>
+                            <span>672 jobs</span>
+                            <span>68% close</span>
                             <span>$720 avg</span>
-                            <span>$8,640</span>
+                            <span>$483,840</span>
                         </div>
                     </div>
                     <div class="rep-tile">
                         <div class="rep-name">Noah</div>
                         <div class="rep-stats">
-                            <span>15 jobs</span>
+                            <span>615 jobs</span>
                             <span>47% close</span>
                             <span>$650 avg</span>
-                            <span>$9,750</span>
+                            <span>$399,750</span>
                         </div>
                     </div>
                     <div class="rep-tile">
                         <div class="rep-name">Marcus</div>
                         <div class="rep-stats">
-                            <span>18 jobs</span>
+                            <span>518 jobs</span>
                             <span>61% close</span>
-                            <span>$710 avg</span>
-                            <span>$12,780</span>
+                            <span>$510 avg</span>
+                            <span>$264,180</span>
                         </div>
                     </div>
                 </div>
