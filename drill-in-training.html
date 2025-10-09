@@ -95,6 +95,16 @@
             flex: 1;
         }
         
+        .summary-card.clickable {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .summary-card.clickable:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
         .card-icon {
             width: 60px;
             height: 60px;
@@ -438,6 +448,56 @@
             font-weight: 500;
         }
         
+        .employees-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .employee-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .employee-name {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+        
+        .employee-dept {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        
+        .attendance-breakdown, .average-breakdown {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .breakdown-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .breakdown-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+        
+        .breakdown-details {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+        
         @media (max-width: 768px) {
             .controls-section {
                 flex-direction: column;
@@ -496,7 +556,7 @@
         <div class="training-grid">
             <!-- Summary Cards Column -->
             <div class="summary-section">
-                <div class="summary-card">
+                <div class="summary-card clickable" onclick="showEmployeesModal()">
                     <div class="card-icon">
                         <i class="fas fa-users"></i>
                     </div>
@@ -505,7 +565,7 @@
                         <div class="card-label">Total Employees</div>
                     </div>
                 </div>
-                <div class="summary-card">
+                <div class="summary-card clickable" onclick="showClassesModal()">
                     <div class="card-icon">
                         <i class="fas fa-chalkboard-teacher"></i>
                     </div>
@@ -514,7 +574,7 @@
                         <div class="card-label">Classes Held</div>
                     </div>
                 </div>
-                <div class="summary-card">
+                <div class="summary-card clickable" onclick="showAttendanceModal()">
                     <div class="card-icon">
                         <i class="fas fa-check-circle"></i>
                     </div>
@@ -523,7 +583,7 @@
                         <div class="card-label">Overall Attendance</div>
                     </div>
                 </div>
-                <div class="summary-card">
+                <div class="summary-card clickable" onclick="showAverageModal()">
                     <div class="card-icon">
                         <i class="fas fa-star"></i>
                     </div>
@@ -694,7 +754,6 @@
                                 <th>Department</th>
                                 <th>Last Quarter</th>
                                 <th>Year to Date</th>
-                                <th>Classes Completed</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -724,16 +783,72 @@
                         <div class="stat-value" id="modalYearToDate">0</div>
                         <div class="stat-label">Year to Date</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="modalTotalClasses">0</div>
-                        <div class="stat-label">Total Classes</div>
-                    </div>
                 </div>
                 <div class="classes-completed">
                     <h4>Classes Completed</h4>
                     <div id="modalClassesList" class="classes-list">
                         <!-- Classes will be populated by JavaScript -->
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Employees Modal -->
+    <div id="employeesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>All Employees</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="employeesList" class="employees-list">
+                    <!-- Employees will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Classes Modal -->
+    <div id="classesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Training Classes</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="classesList" class="classes-list">
+                    <!-- Classes will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attendance Modal -->
+    <div id="attendanceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Attendance Breakdown</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="attendanceBreakdown" class="attendance-breakdown">
+                    <!-- Attendance breakdown will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Average Modal -->
+    <div id="averageModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Average Calculation</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="averageBreakdown" class="average-breakdown">
+                    <!-- Average breakdown will be populated by JavaScript -->
                 </div>
             </div>
         </div>
@@ -793,11 +908,15 @@
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
             updateEmployeeTable();
+            updateSummaryCards();
+            updateDepartmentCards();
         });
 
         // Update filters
         function updateFilters() {
             updateEmployeeTable();
+            updateSummaryCards();
+            updateDepartmentCards();
         }
 
         // Update employee table
@@ -814,14 +933,21 @@
                 const dept = trainingAttendanceData.departments[deptName];
                 dept.employees.forEach(employee => {
                     const row = document.createElement('tr');
-                    const attendance = timePeriod === 'lastQuarter' ? employee.lastQuarter : employee.yearToDate;
+                    
+                    // Highlight the selected time period column
+                    const lastQuarterCell = timePeriod === 'lastQuarter' ? 
+                        `<td style="background-color: #e0e7ff; font-weight: 600;">${employee.lastQuarter}</td>` : 
+                        `<td>${employee.lastQuarter}</td>`;
+                    
+                    const yearToDateCell = timePeriod === 'yearToDate' ? 
+                        `<td style="background-color: #e0e7ff; font-weight: 600;">${employee.yearToDate}</td>` : 
+                        `<td>${employee.yearToDate}</td>`;
                     
                     row.innerHTML = `
                         <td>${employee.name}</td>
                         <td>${deptName}</td>
-                        <td>${employee.lastQuarter}</td>
-                        <td>${employee.yearToDate}</td>
-                        <td>${employee.classes.length}</td>
+                        ${lastQuarterCell}
+                        ${yearToDateCell}
                         <td><button class="btn-primary" onclick="showEmployeeDetails('${employee.name}', '${deptName}')">View Details</button></td>
                     `;
                     
@@ -837,7 +963,6 @@
             document.getElementById('modalEmployeeName').textContent = employeeName;
             document.getElementById('modalLastQuarter').textContent = employee.lastQuarter;
             document.getElementById('modalYearToDate').textContent = employee.yearToDate;
-            document.getElementById('modalTotalClasses').textContent = employee.classes.length;
             
             const classesList = document.getElementById('modalClassesList');
             classesList.innerHTML = '';
@@ -853,7 +978,11 @@
 
         // Close modal
         function closeModal() {
-            document.getElementById('employeeModal').style.display = 'none';
+            // Close all modals
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+            });
         }
 
         // Export data
@@ -863,10 +992,231 @@
 
         // Close modal when clicking outside
         window.onclick = function(event) {
-            const modal = document.getElementById('employeeModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // Update summary cards based on time period
+        function updateSummaryCards() {
+            const timePeriod = document.getElementById('timePeriod').value;
+            let totalEmployees = 0;
+            let totalClasses = 0;
+            let totalAttendance = 0;
+            let totalSessions = 0;
+            
+            Object.keys(trainingAttendanceData.departments).forEach(deptName => {
+                const dept = trainingAttendanceData.departments[deptName];
+                totalEmployees += dept.employees.length;
+                
+                if (timePeriod === 'lastQuarter') {
+                    totalClasses = 6; // Last quarter had 6 classes
+                    totalAttendance += dept.lastQuarter.attended * dept.employees.length;
+                    totalSessions = totalClasses * totalEmployees;
+                } else {
+                    totalClasses = 12; // Year to date has 12 classes
+                    totalAttendance += dept.yearToDate.attended * dept.employees.length;
+                    totalSessions = totalClasses * totalEmployees;
+                }
+            });
+            
+            const attendanceRate = totalSessions > 0 ? Math.round((totalAttendance / totalSessions) * 100) : 0;
+            const avgPerEmployee = totalEmployees > 0 ? (totalAttendance / totalEmployees).toFixed(1) : 0;
+            
+            document.getElementById('totalEmployees').textContent = totalEmployees;
+            document.getElementById('totalClasses').textContent = totalClasses;
+            document.getElementById('attendanceRate').textContent = attendanceRate + '%';
+            document.getElementById('avgPerEmployee').textContent = avgPerEmployee;
+        }
+        
+        // Update department cards based on time period
+        function updateDepartmentCards() {
+            const timePeriod = document.getElementById('timePeriod').value;
+            
+            Object.keys(trainingAttendanceData.departments).forEach(deptName => {
+                const dept = trainingAttendanceData.departments[deptName];
+                const deptCard = document.querySelector(`[data-dept="${deptName}"]`);
+                
+                if (deptCard) {
+                    const lastQuarterMetric = deptCard.querySelector('.metric-item:first-child .metric-value');
+                    const yearToDateMetric = deptCard.querySelector('.metric-item:last-child .metric-value');
+                    const lastQuarterProgress = deptCard.querySelector('.metric-item:first-child .progress-fill');
+                    const yearToDateProgress = deptCard.querySelector('.metric-item:last-child .progress-fill');
+                    
+                    if (timePeriod === 'lastQuarter') {
+                        // Highlight last quarter data
+                        lastQuarterMetric.textContent = `${dept.lastQuarter.attended} / ${dept.lastQuarter.total}`;
+                        lastQuarterProgress.style.width = `${Math.round((dept.lastQuarter.attended / dept.lastQuarter.total) * 100)}%`;
+                        
+                        // Update year to date data
+                        yearToDateMetric.textContent = `${dept.yearToDate.attended} / ${dept.yearToDate.total}`;
+                        yearToDateProgress.style.width = `${Math.round((dept.yearToDate.attended / dept.yearToDate.total) * 100)}%`;
+                    } else {
+                        // Highlight year to date data
+                        lastQuarterMetric.textContent = `${dept.lastQuarter.attended} / ${dept.lastQuarter.total}`;
+                        lastQuarterProgress.style.width = `${Math.round((dept.lastQuarter.attended / dept.lastQuarter.total) * 100)}%`;
+                        
+                        yearToDateMetric.textContent = `${dept.yearToDate.attended} / ${dept.yearToDate.total}`;
+                        yearToDateProgress.style.width = `${Math.round((dept.yearToDate.attended / dept.yearToDate.total) * 100)}%`;
+                    }
+                }
+            });
+        }
+
+        // Show employees modal
+        function showEmployeesModal() {
+            const employeesList = document.getElementById('employeesList');
+            employeesList.innerHTML = '';
+            
+            Object.keys(trainingAttendanceData.departments).forEach(deptName => {
+                const dept = trainingAttendanceData.departments[deptName];
+                dept.employees.forEach(employee => {
+                    const employeeItem = document.createElement('div');
+                    employeeItem.className = 'employee-item';
+                    employeeItem.innerHTML = `
+                        <div class="employee-name">${employee.name}</div>
+                        <div class="employee-dept">${deptName}</div>
+                    `;
+                    employeesList.appendChild(employeeItem);
+                });
+            });
+            
+            document.getElementById('employeesModal').style.display = 'block';
+        }
+        
+        // Show classes modal
+        function showClassesModal() {
+            const classesList = document.getElementById('classesList');
+            classesList.innerHTML = '';
+            
+            // Get all unique classes from all employees
+            const allClasses = new Set();
+            Object.keys(trainingAttendanceData.departments).forEach(deptName => {
+                const dept = trainingAttendanceData.departments[deptName];
+                dept.employees.forEach(employee => {
+                    employee.classes.forEach(className => {
+                        allClasses.add(className);
+                    });
+                });
+            });
+            
+            allClasses.forEach(className => {
+                const classItem = document.createElement('div');
+                classItem.className = 'class-item';
+                classItem.textContent = className;
+                classesList.appendChild(classItem);
+            });
+            
+            document.getElementById('classesModal').style.display = 'block';
+        }
+        
+        // Show attendance modal
+        function showAttendanceModal() {
+            const attendanceBreakdown = document.getElementById('attendanceBreakdown');
+            const timePeriod = document.getElementById('timePeriod').value;
+            attendanceBreakdown.innerHTML = '';
+            
+            let totalAttendance = 0;
+            let totalSessions = 0;
+            let totalEmployees = 0;
+            
+            Object.keys(trainingAttendanceData.departments).forEach(deptName => {
+                const dept = trainingAttendanceData.departments[deptName];
+                const deptEmployees = dept.employees.length;
+                totalEmployees += deptEmployees;
+                
+                let deptAttendance = 0;
+                let deptSessions = 0;
+                
+                if (timePeriod === 'lastQuarter') {
+                    deptAttendance = dept.lastQuarter.attended * deptEmployees;
+                    deptSessions = dept.lastQuarter.total * deptEmployees;
+                } else {
+                    deptAttendance = dept.yearToDate.attended * deptEmployees;
+                    deptSessions = dept.yearToDate.total * deptEmployees;
+                }
+                
+                totalAttendance += deptAttendance;
+                totalSessions += deptSessions;
+                
+                const breakdownItem = document.createElement('div');
+                breakdownItem.className = 'breakdown-item';
+                breakdownItem.innerHTML = `
+                    <div class="breakdown-title">${deptName}</div>
+                    <div class="breakdown-details">
+                        ${deptEmployees} employees × ${timePeriod === 'lastQuarter' ? dept.lastQuarter.attended : dept.yearToDate.attended} classes = ${deptAttendance} total attendance<br>
+                        ${deptEmployees} employees × ${timePeriod === 'lastQuarter' ? dept.lastQuarter.total : dept.yearToDate.total} classes = ${deptSessions} total sessions<br>
+                        Rate: ${Math.round((deptAttendance / deptSessions) * 100)}%
+                    </div>
+                `;
+                attendanceBreakdown.appendChild(breakdownItem);
+            });
+            
+            const totalItem = document.createElement('div');
+            totalItem.className = 'breakdown-item';
+            totalItem.style.background = '#e0e7ff';
+            totalItem.style.borderColor = '#3730a3';
+            totalItem.innerHTML = `
+                <div class="breakdown-title">Overall Total</div>
+                <div class="breakdown-details">
+                    ${totalAttendance} total attendance ÷ ${totalSessions} total sessions = ${Math.round((totalAttendance / totalSessions) * 100)}%
+                </div>
+            `;
+            attendanceBreakdown.appendChild(totalItem);
+            
+            document.getElementById('attendanceModal').style.display = 'block';
+        }
+        
+        // Show average modal
+        function showAverageModal() {
+            const averageBreakdown = document.getElementById('averageBreakdown');
+            const timePeriod = document.getElementById('timePeriod').value;
+            averageBreakdown.innerHTML = '';
+            
+            let totalAttendance = 0;
+            let totalEmployees = 0;
+            
+            Object.keys(trainingAttendanceData.departments).forEach(deptName => {
+                const dept = trainingAttendanceData.departments[deptName];
+                const deptEmployees = dept.employees.length;
+                totalEmployees += deptEmployees;
+                
+                let deptAttendance = 0;
+                if (timePeriod === 'lastQuarter') {
+                    deptAttendance = dept.lastQuarter.attended * deptEmployees;
+                } else {
+                    deptAttendance = dept.yearToDate.attended * deptEmployees;
+                }
+                
+                totalAttendance += deptAttendance;
+                
+                const breakdownItem = document.createElement('div');
+                breakdownItem.className = 'breakdown-item';
+                breakdownItem.innerHTML = `
+                    <div class="breakdown-title">${deptName}</div>
+                    <div class="breakdown-details">
+                        ${deptEmployees} employees × ${timePeriod === 'lastQuarter' ? dept.lastQuarter.attended : dept.yearToDate.attended} classes = ${deptAttendance} total attendance
+                    </div>
+                `;
+                averageBreakdown.appendChild(breakdownItem);
+            });
+            
+            const totalItem = document.createElement('div');
+            totalItem.className = 'breakdown-item';
+            totalItem.style.background = '#e0e7ff';
+            totalItem.style.borderColor = '#3730a3';
+            totalItem.innerHTML = `
+                <div class="breakdown-title">Average Calculation</div>
+                <div class="breakdown-details">
+                    ${totalAttendance} total attendance ÷ ${totalEmployees} employees = ${(totalAttendance / totalEmployees).toFixed(1)} classes per employee
+                </div>
+            `;
+            averageBreakdown.appendChild(totalItem);
+            
+            document.getElementById('averageModal').style.display = 'block';
         }
 
         // Go back to dashboard
