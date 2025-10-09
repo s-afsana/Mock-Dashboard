@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Performance Detail - Stepoway Enterprises</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .drill-in-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+            color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .drill-in-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .back-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .rep-selector {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .rep-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .rep-option {
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .rep-option:hover {
+            border-color: #4f46e5;
+            background: #f8fafc;
+        }
+        
+        .rep-option.active {
+            border-color: #4f46e5;
+            background: #eef2ff;
+        }
+        
+        .rep-name {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+        
+        .rep-role {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .performance-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .kpi-mini {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .kpi-mini-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #4f46e5;
+            margin-bottom: 0.5rem;
+        }
+        
+        .kpi-mini-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .funnel-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+        
+        .funnel-stage {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .funnel-stage:last-child {
+            border-bottom: none;
+        }
+        
+        .stage-label {
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .stage-bar {
+            flex: 1;
+            height: 20px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin: 0 1rem;
+            overflow: hidden;
+        }
+        
+        .stage-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+        
+        .stage-fill.leads { background: #f59e0b; }
+        .stage-fill.qualified { background: #06b6d4; }
+        .stage-fill.quoted { background: #4f46e5; }
+        .stage-fill.won { background: #10b981; }
+        
+        .stage-count {
+            font-weight: 600;
+            color: #1e293b;
+            min-width: 40px;
+            text-align: right;
+        }
+        
+        .categories-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+        
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .category-item:last-child {
+            border-bottom: none;
+        }
+        
+        .category-name {
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .category-revenue {
+            font-weight: 600;
+            color: #4f46e5;
+        }
+        
+        @media (max-width: 768px) {
+            .performance-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .rep-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="drill-in-header">
+        <div class="drill-in-content">
+            <button class="back-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </button>
+            <h1>Job Performance Detail</h1>
+            <p>Which reps are driving results and where can coaching improve outcomes?</p>
+        </div>
+    </div>
+    
+    <div class="drill-in-content">
+        <!-- Rep Selector -->
+        <div class="rep-selector">
+            <h3 style="margin-bottom: 1rem; color: #1e293b;">Select Representative</h3>
+            <div class="rep-options">
+                <div class="rep-option active" data-rep="ava" onclick="selectRep('ava')">
+                    <div class="rep-name">Ava</div>
+                    <div class="rep-role">Senior Rep</div>
+                </div>
+                <div class="rep-option" data-rep="noah" onclick="selectRep('noah')">
+                    <div class="rep-name">Noah</div>
+                    <div class="rep-role">Mid-Level</div>
+                </div>
+                <div class="rep-option" data-rep="marcus" onclick="selectRep('marcus')">
+                    <div class="rep-name">Marcus</div>
+                    <div class="rep-role">Senior Rep</div>
+                </div>
+                <div class="rep-option" data-rep="sophie" onclick="selectRep('sophie')">
+                    <div class="rep-name">Sophie</div>
+                    <div class="rep-role">Junior Rep</div>
+                </div>
+                <div class="rep-option" data-rep="liam" onclick="selectRep('liam')">
+                    <div class="rep-name">Liam</div>
+                    <div class="rep-role">Mid-Level</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Rep KPIs -->
+        <div class="kpi-grid">
+            <div class="kpi-mini">
+                <div class="kpi-mini-value" id="repJobs">12</div>
+                <div class="kpi-mini-label">Jobs</div>
+            </div>
+            <div class="kpi-mini">
+                <div class="kpi-mini-value" id="repCloseRate">58%</div>
+                <div class="kpi-mini-label">Close Rate</div>
+            </div>
+            <div class="kpi-mini">
+                <div class="kpi-mini-value" id="repAvgTicket">$720</div>
+                <div class="kpi-mini-label">Avg Ticket</div>
+            </div>
+            <div class="kpi-mini">
+                <div class="kpi-mini-value" id="repRevenue">$8,640</div>
+                <div class="kpi-mini-label">Revenue MTD</div>
+            </div>
+        </div>
+        
+        <div class="performance-grid">
+            <!-- Revenue vs Goal Trend -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>Revenue vs Goal Trend</h3>
+                </div>
+                <div class="panel-content">
+                    <canvas id="revenueTrendChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Sales Funnel -->
+            <div class="funnel-section">
+                <h3 style="margin-bottom: 1.5rem; color: #1e293b;">Sales Funnel</h3>
+                <div class="funnel-stage">
+                    <span class="stage-label">Leads</span>
+                    <div class="stage-bar">
+                        <div class="stage-fill leads" style="width: 100%"></div>
+                    </div>
+                    <span class="stage-count" id="leadsCount">24</span>
+                </div>
+                <div class="funnel-stage">
+                    <span class="stage-label">Qualified</span>
+                    <div class="stage-bar">
+                        <div class="stage-fill qualified" style="width: 75%"></div>
+                    </div>
+                    <span class="stage-count" id="qualifiedCount">18</span>
+                </div>
+                <div class="funnel-stage">
+                    <span class="stage-label">Quoted</span>
+                    <div class="stage-bar">
+                        <div class="stage-fill quoted" style="width: 50%"></div>
+                    </div>
+                    <span class="stage-count" id="quotedCount">12</span>
+                </div>
+                <div class="funnel-stage">
+                    <span class="stage-label">Won</span>
+                    <div class="stage-bar">
+                        <div class="stage-fill won" style="width: 25%"></div>
+                    </div>
+                    <span class="stage-count" id="wonCount">7</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Top Job Categories -->
+        <div class="categories-section">
+            <h3 style="margin-bottom: 1.5rem; color: #1e293b;">Top Job Categories</h3>
+            <div class="category-item">
+                <span class="category-name">HVAC Installation</span>
+                <span class="category-revenue">$3,240</span>
+            </div>
+            <div class="category-item">
+                <span class="category-name">Plumbing Repair</span>
+                <span class="category-revenue">$2,160</span>
+            </div>
+            <div class="category-item">
+                <span class="category-name">Electrical Service</span>
+                <span class="category-revenue">$1,800</span>
+            </div>
+            <div class="category-item">
+                <span class="category-name">Maintenance</span>
+                <span class="category-revenue">$1,440</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Rep data
+        const repData = {
+            ava: {
+                name: 'Ava',
+                jobs: 12,
+                closeRate: 58,
+                avgTicket: 720,
+                revenue: 8640,
+                leads: 24,
+                qualified: 18,
+                quoted: 12,
+                won: 7,
+                trend: [6500, 7200, 6800, 7500, 8200, 8640]
+            },
+            noah: {
+                name: 'Noah',
+                jobs: 15,
+                closeRate: 47,
+                avgTicket: 650,
+                revenue: 9750,
+                leads: 32,
+                qualified: 20,
+                quoted: 15,
+                won: 7,
+                trend: [8000, 8500, 7800, 9000, 9200, 9750]
+            },
+            marcus: {
+                name: 'Marcus',
+                jobs: 18,
+                closeRate: 61,
+                avgTicket: 710,
+                revenue: 12780,
+                leads: 30,
+                qualified: 22,
+                quoted: 18,
+                won: 11,
+                trend: [10000, 11000, 10500, 12000, 12500, 12780]
+            },
+            sophie: {
+                name: 'Sophie',
+                jobs: 8,
+                closeRate: 50,
+                avgTicket: 680,
+                revenue: 5440,
+                leads: 16,
+                qualified: 12,
+                quoted: 8,
+                won: 4,
+                trend: [4000, 4500, 4200, 4800, 5200, 5440]
+            },
+            liam: {
+                name: 'Liam',
+                jobs: 14,
+                closeRate: 54,
+                avgTicket: 695,
+                revenue: 9730,
+                leads: 26,
+                qualified: 19,
+                quoted: 14,
+                won: 8,
+                trend: [7000, 7500, 7200, 8000, 9000, 9730]
+            }
+        };
+        
+        let currentRep = 'ava';
+        let revenueChart;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeChart();
+            updateRepData('ava');
+        });
+        
+        function selectRep(repId) {
+            // Update active state
+            document.querySelectorAll('.rep-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            document.querySelector(`[data-rep="${repId}"]`).classList.add('active');
+            
+            currentRep = repId;
+            updateRepData(repId);
+        }
+        
+        function updateRepData(repId) {
+            const data = repData[repId];
+            
+            // Update KPIs
+            document.getElementById('repJobs').textContent = data.jobs;
+            document.getElementById('repCloseRate').textContent = data.closeRate + '%';
+            document.getElementById('repAvgTicket').textContent = '$' + data.avgTicket;
+            document.getElementById('repRevenue').textContent = '$' + data.revenue.toLocaleString();
+            
+            // Update funnel
+            document.getElementById('leadsCount').textContent = data.leads;
+            document.getElementById('qualifiedCount').textContent = data.qualified;
+            document.getElementById('quotedCount').textContent = data.quoted;
+            document.getElementById('wonCount').textContent = data.won;
+            
+            // Update funnel bars
+            document.querySelector('.stage-fill.qualified').style.width = (data.qualified / data.leads * 100) + '%';
+            document.querySelector('.stage-fill.quoted').style.width = (data.quoted / data.leads * 100) + '%';
+            document.querySelector('.stage-fill.won').style.width = (data.won / data.leads * 100) + '%';
+            
+            // Update chart
+            if (revenueChart) {
+                revenueChart.data.datasets[0].data = data.trend;
+                revenueChart.update();
+            }
+        }
+        
+        function initializeChart() {
+            const ctx = document.getElementById('revenueTrendChart').getContext('2d');
+            revenueChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [
+                        {
+                            label: 'Revenue',
+                            data: repData.ava.trend,
+                            borderColor: '#4f46e5',
+                            backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + (value / 1000) + 'K';
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

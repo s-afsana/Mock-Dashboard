@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Attendance Detail - Stepoway Enterprises</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .drill-in-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+            color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .drill-in-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .back-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .drill-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .sessions-table {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .sessions-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .sessions-table th,
+        .sessions-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .sessions-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .sessions-table tr:hover {
+            background: #f8fafc;
+        }
+        
+        .session-type {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .session-type.recurring {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .session-type.one-off {
+            background: #cffafe;
+            color: #0e7490;
+        }
+        
+        .session-type.coaching {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .no-show-rate {
+            font-weight: 600;
+        }
+        
+        .no-show-rate.low {
+            color: #10b981;
+        }
+        
+        .no-show-rate.medium {
+            color: #f59e0b;
+        }
+        
+        .no-show-rate.high {
+            color: #ef4444;
+        }
+        
+        .engagement-insights {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+        
+        .insight-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .insight-item:last-child {
+            border-bottom: none;
+        }
+        
+        .insight-label {
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .insight-value {
+            font-weight: 600;
+            color: #4f46e5;
+        }
+        
+        @media (max-width: 768px) {
+            .drill-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="drill-in-header">
+        <div class="drill-in-content">
+            <button class="back-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </button>
+            <h1>Training Attendance Detail</h1>
+            <p>Who is showing up to which training, and when are engagement windows strongest?</p>
+        </div>
+    </div>
+    
+    <div class="drill-in-content">
+        <!-- Trend Chart -->
+        <div class="panel">
+            <div class="panel-header">
+                <h3>Attendance Trend by Session Type</h3>
+            </div>
+            <div class="panel-content">
+                <canvas id="attendanceTrendChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="drill-grid">
+            <!-- Training Session Heatmap -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>Training Session Attendance</h3>
+                </div>
+                <div class="panel-content">
+                    <div class="heatmap-container">
+                        <div class="heatmap">
+                            <div class="heatmap-header">
+                                <div class="time-label"></div>
+                                <div class="day-label">Mon</div>
+                                <div class="day-label">Tue</div>
+                                <div class="day-label">Wed</div>
+                                <div class="day-label">Thu</div>
+                                <div class="day-label">Fri</div>
+                            </div>
+                            <div class="heatmap-row">
+                                <div class="time-slot">8AM</div>
+                                <div class="heat-cell low" title="Monday 8AM: 2 attendees">2</div>
+                                <div class="heat-cell medium" title="Tuesday 8AM: 5 attendees">5</div>
+                                <div class="heat-cell high" title="Wednesday 8AM: 12 attendees">12</div>
+                                <div class="heat-cell medium" title="Thursday 8AM: 6 attendees">6</div>
+                                <div class="heat-cell low" title="Friday 8AM: 3 attendees">3</div>
+                            </div>
+                            <div class="heatmap-row">
+                                <div class="time-slot">10AM</div>
+                                <div class="heat-cell medium" title="Monday 10AM: 7 attendees">7</div>
+                                <div class="heat-cell high" title="Tuesday 10AM: 15 attendees">15</div>
+                                <div class="heat-cell high" title="Wednesday 10AM: 18 attendees">18</div>
+                                <div class="heat-cell high" title="Thursday 10AM: 14 attendees">14</div>
+                                <div class="heat-cell medium" title="Friday 10AM: 8 attendees">8</div>
+                            </div>
+                            <div class="heatmap-row">
+                                <div class="time-slot">2PM</div>
+                                <div class="heat-cell high" title="Monday 2PM: 16 attendees">16</div>
+                                <div class="heat-cell high" title="Tuesday 2PM: 19 attendees">19</div>
+                                <div class="heat-cell medium" title="Wednesday 2PM: 11 attendees">11</div>
+                                <div class="heat-cell high" title="Thursday 2PM: 17 attendees">17</div>
+                                <div class="heat-cell high" title="Friday 2PM: 13 attendees">13</div>
+                            </div>
+                            <div class="heatmap-row">
+                                <div class="time-slot">4PM</div>
+                                <div class="heat-cell medium" title="Monday 4PM: 9 attendees">9</div>
+                                <div class="heat-cell low" title="Tuesday 4PM: 4 attendees">4</div>
+                                <div class="heat-cell low" title="Wednesday 4PM: 3 attendees">3</div>
+                                <div class="heat-cell medium" title="Thursday 4PM: 7 attendees">7</div>
+                                <div class="heat-cell low" title="Friday 4PM: 2 attendees">2</div>
+                            </div>
+                        </div>
+                        <div class="heatmap-legend">
+                            <div class="legend-title">Attendance Level</div>
+                            <div class="legend-items">
+                                <div class="legend-item">
+                                    <div class="legend-color low"></div>
+                                    <span>Low (1-5)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color medium"></div>
+                                    <span>Medium (6-10)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color high"></div>
+                                    <span>High (11+)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Engagement Insights -->
+            <div class="engagement-insights">
+                <h3 style="margin-bottom: 1.5rem; color: #1e293b;">Key Insights</h3>
+                <div class="insight-item">
+                    <span class="insight-label">Peak Engagement Time</span>
+                    <span class="insight-value">10AM - 2PM</span>
+                </div>
+                <div class="insight-item">
+                    <span class="insight-label">Best Day</span>
+                    <span class="insight-value">Wednesday</span>
+                </div>
+                <div class="insight-item">
+                    <span class="insight-label">Avg Attendance</span>
+                    <span class="insight-value">87%</span>
+                </div>
+                <div class="insight-item">
+                    <span class="insight-label">Top Session Type</span>
+                    <span class="insight-value">Coaching</span>
+                </div>
+                <div class="insight-item">
+                    <span class="insight-label">Engagement Score</span>
+                    <span class="insight-value">78/100</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Top Sessions Table -->
+        <div class="sessions-table">
+            <div class="panel-header">
+                <h3>Top Performing Sessions</h3>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Session</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Attendees</th>
+                        <th>No-Show %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Advanced Sales Techniques</td>
+                        <td><span class="session-type coaching">Coaching</span></td>
+                        <td>Dec 15, 2024</td>
+                        <td>12</td>
+                        <td><span class="no-show-rate low">5%</span></td>
+                    </tr>
+                    <tr>
+                        <td>Customer Service Excellence</td>
+                        <td><span class="session-type recurring">Recurring</span></td>
+                        <td>Dec 12, 2024</td>
+                        <td>18</td>
+                        <td><span class="no-show-rate low">8%</span></td>
+                    </tr>
+                    <tr>
+                        <td>Product Knowledge Update</td>
+                        <td><span class="session-type one-off">One-Off</span></td>
+                        <td>Dec 10, 2024</td>
+                        <td>15</td>
+                        <td><span class="no-show-rate medium">12%</span></td>
+                    </tr>
+                    <tr>
+                        <td>Safety Protocols Review</td>
+                        <td><span class="session-type recurring">Recurring</span></td>
+                        <td>Dec 8, 2024</td>
+                        <td>20</td>
+                        <td><span class="no-show-rate low">6%</span></td>
+                    </tr>
+                    <tr>
+                        <td>Digital Tools Training</td>
+                        <td><span class="session-type one-off">One-Off</span></td>
+                        <td>Dec 5, 2024</td>
+                        <td>14</td>
+                        <td><span class="no-show-rate medium">15%</span></td>
+                    </tr>
+                    <tr>
+                        <td>Team Building Workshop</td>
+                        <td><span class="session-type coaching">Coaching</span></td>
+                        <td>Dec 3, 2024</td>
+                        <td>16</td>
+                        <td><span class="no-show-rate low">9%</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize attendance trend chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('attendanceTrendChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                    datasets: [
+                        {
+                            label: 'Recurring Sessions',
+                            data: [12, 15, 18, 14, 16, 19],
+                            borderColor: '#4f46e5',
+                            backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'One-Off Sessions',
+                            data: [8, 12, 10, 15, 13, 11],
+                            borderColor: '#06b6d4',
+                            backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Coaching Sessions',
+                            data: [6, 8, 9, 7, 10, 12],
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        });
+        
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

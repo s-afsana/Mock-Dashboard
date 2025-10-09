@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Validation Detail - Stepoway Enterprises</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .drill-in-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+            color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .drill-in-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .back-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .controls-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .control-group label {
+            font-weight: 500;
+            color: #374151;
+            font-size: 0.9rem;
+        }
+        
+        .control-group select {
+            padding: 0.5rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: white;
+            color: #374151;
+            font-size: 0.9rem;
+        }
+        
+        .financial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .comparison-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+        
+        .comparison-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .comparison-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .status-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-badge.in-sync {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .status-badge.variance {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-label {
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .comparison-value {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 1.1rem;
+        }
+        
+        .comparison-value.positive {
+            color: #10b981;
+        }
+        
+        .comparison-value.negative {
+            color: #ef4444;
+        }
+        
+        .variance-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+        
+        .variance-trend {
+            margin-bottom: 2rem;
+        }
+        
+        .suspect-items {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .suspect-items table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .suspect-items th,
+        .suspect-items td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .suspect-items th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .suspect-items tr:hover {
+            background: #f8fafc;
+        }
+        
+        .reason-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .reason-badge.missing {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        
+        .reason-badge.duplicate {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .reason-badge.timing {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+        
+        .amount {
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .amount.positive {
+            color: #10b981;
+        }
+        
+        .amount.negative {
+            color: #ef4444;
+        }
+        
+        @media (max-width: 768px) {
+            .financial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="drill-in-header">
+        <div class="drill-in-content">
+            <button class="back-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </button>
+            <h1>Financial Validation Detail</h1>
+            <p>Are CRM revenue figures aligned with QuickBooks, and where are discrepancies?</p>
+        </div>
+    </div>
+    
+    <div class="drill-in-content">
+        <!-- Controls -->
+        <div class="controls-section">
+            <div class="control-group">
+                <label for="monthSelector">Select Month</label>
+                <select id="monthSelector" onchange="updateFinancialData()">
+                    <option value="dec2024">December 2024</option>
+                    <option value="nov2024">November 2024</option>
+                    <option value="oct2024">October 2024</option>
+                    <option value="sep2024">September 2024</option>
+                    <option value="aug2024">August 2024</option>
+                    <option value="jul2024">July 2024</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="toleranceSelector">Tolerance</label>
+                <select id="toleranceSelector" onchange="updateFinancialData()">
+                    <option value="1">1%</option>
+                    <option value="2" selected>2%</option>
+                    <option value="3">3%</option>
+                    <option value="5">5%</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="financial-grid">
+            <!-- CRM vs QuickBooks Comparison -->
+            <div class="comparison-section">
+                <div class="comparison-header">
+                    <h3 class="comparison-title">CRM vs QuickBooks</h3>
+                    <span class="status-badge in-sync" id="syncStatus">In Sync</span>
+                </div>
+                <div class="comparison-row">
+                    <span class="comparison-label">CRM Total:</span>
+                    <span class="comparison-value" id="crmTotal">$847,250</span>
+                </div>
+                <div class="comparison-row">
+                    <span class="comparison-label">QuickBooks:</span>
+                    <span class="comparison-value" id="qbTotal">$841,180</span>
+                </div>
+                <div class="comparison-row">
+                    <span class="comparison-label">Variance:</span>
+                    <span class="comparison-value negative" id="varianceAmount">-$6,070</span>
+                </div>
+                <div class="comparison-row">
+                    <span class="comparison-label">Variance %:</span>
+                    <span class="comparison-value negative" id="variancePercent">-0.72%</span>
+                </div>
+            </div>
+            
+            <!-- Variance Trend -->
+            <div class="variance-section">
+                <h3 style="margin-bottom: 1.5rem; color: #1e293b;">Variance Trend (Last 6 Months)</h3>
+                <div class="variance-trend">
+                    <canvas id="varianceChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Suspect Items Table -->
+        <div class="suspect-items">
+            <div class="panel-header">
+                <h3>Suspect Items Requiring Review</h3>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>CRM Amount</th>
+                        <th>QB Amount</th>
+                        <th>Variance</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dec 15, 2024</td>
+                        <td>HVAC Installation - Johnson</td>
+                        <td class="amount">$2,400</td>
+                        <td class="amount">$0</td>
+                        <td class="amount negative">-$2,400</td>
+                        <td><span class="reason-badge missing">Missing Invoice</span></td>
+                    </tr>
+                    <tr>
+                        <td>Dec 12, 2024</td>
+                        <td>Plumbing Repair - Smith</td>
+                        <td class="amount">$850</td>
+                        <td class="amount">$1,700</td>
+                        <td class="amount positive">+$850</td>
+                        <td><span class="reason-badge duplicate">Duplicate</span></td>
+                    </tr>
+                    <tr>
+                        <td>Dec 10, 2024</td>
+                        <td>Electrical Service - Brown</td>
+                        <td class="amount">$1,200</td>
+                        <td class="amount">$0</td>
+                        <td class="amount negative">-$1,200</td>
+                        <td><span class="reason-badge timing">Timing</span></td>
+                    </tr>
+                    <tr>
+                        <td>Dec 8, 2024</td>
+                        <td>Maintenance - Davis</td>
+                        <td class="amount">$450</td>
+                        <td class="amount">$900</td>
+                        <td class="amount positive">+$450</td>
+                        <td><span class="reason-badge duplicate">Duplicate</span></td>
+                    </tr>
+                    <tr>
+                        <td>Dec 5, 2024</td>
+                        <td>HVAC Repair - Wilson</td>
+                        <td class="amount">$1,800</td>
+                        <td class="amount">$0</td>
+                        <td class="amount negative">-$1,800</td>
+                        <td><span class="reason-badge missing">Missing Invoice</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        // Financial data for different months
+        const financialData = {
+            dec2024: {
+                crm: 847250,
+                qb: 841180,
+                variance: -6070,
+                variancePercent: -0.72,
+                status: 'in-sync',
+                trend: [-0.5, -0.8, -1.2, -0.9, -0.6, -0.72]
+            },
+            nov2024: {
+                crm: 892000,
+                qb: 895000,
+                variance: 3000,
+                variancePercent: 0.34,
+                status: 'in-sync',
+                trend: [-0.8, -1.1, -1.5, -1.2, -0.9, 0.34]
+            },
+            oct2024: {
+                crm: 756000,
+                qb: 748000,
+                variance: -8000,
+                variancePercent: -1.07,
+                status: 'in-sync',
+                trend: [-1.2, -1.5, -1.8, -1.5, -1.2, -1.07]
+            },
+            sep2024: {
+                crm: 823000,
+                qb: 815000,
+                variance: -8000,
+                variancePercent: -0.97,
+                status: 'in-sync',
+                trend: [-1.5, -1.8, -2.1, -1.8, -1.5, -0.97]
+            },
+            aug2024: {
+                crm: 789000,
+                qb: 780000,
+                variance: -9000,
+                variancePercent: -1.15,
+                status: 'in-sync',
+                trend: [-1.8, -2.1, -2.4, -2.1, -1.8, -1.15]
+            },
+            jul2024: {
+                crm: 745000,
+                qb: 730000,
+                variance: -15000,
+                variancePercent: -2.01,
+                status: 'variance',
+                trend: [-2.1, -2.4, -2.7, -2.4, -2.1, -2.01]
+            }
+        };
+        
+        let varianceChart;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeVarianceChart();
+            updateFinancialData();
+        });
+        
+        function updateFinancialData() {
+            const month = document.getElementById('monthSelector').value;
+            const tolerance = parseFloat(document.getElementById('toleranceSelector').value);
+            const data = financialData[month];
+            
+            // Update comparison values
+            document.getElementById('crmTotal').textContent = '$' + data.crm.toLocaleString();
+            document.getElementById('qbTotal').textContent = '$' + data.qb.toLocaleString();
+            document.getElementById('varianceAmount').textContent = '$' + (data.variance > 0 ? '+' : '') + data.variance.toLocaleString();
+            document.getElementById('variancePercent').textContent = (data.variancePercent > 0 ? '+' : '') + data.variancePercent.toFixed(2) + '%';
+            
+            // Update status
+            const statusElement = document.getElementById('syncStatus');
+            const absVariance = Math.abs(data.variancePercent);
+            
+            if (absVariance <= tolerance) {
+                statusElement.textContent = 'In Sync';
+                statusElement.className = 'status-badge in-sync';
+            } else {
+                statusElement.textContent = 'Variance Flag';
+                statusElement.className = 'status-badge variance';
+            }
+            
+            // Update chart
+            if (varianceChart) {
+                varianceChart.data.datasets[0].data = data.trend;
+                varianceChart.update();
+            }
+        }
+        
+        function initializeVarianceChart() {
+            const ctx = document.getElementById('varianceChart').getContext('2d');
+            varianceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [
+                        {
+                            label: 'Variance %',
+                            data: financialData.dec2024.trend,
+                            borderColor: '#4f46e5',
+                            backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toFixed(1) + '%';
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
