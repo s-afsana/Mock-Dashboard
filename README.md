@@ -1,6 +1,6 @@
-# Stepoway Enterprises - Contractor Performance Dashboard
+# Stepowoy Enterprises - Contractor Performance Dashboard
 
-A comprehensive, executive-ready dashboard that demonstrates the connection between SBE training engagement and job performance outcomes for Stepoway Enterprises.
+A comprehensive, executive-ready dashboard that demonstrates the connection between SBE training engagement and job performance outcomes for Stepowoy Enterprises.
 
 ## 🎯 Overview
 
@@ -76,8 +76,8 @@ The dashboard demonstrates:
 
 ## 📞 Contact
 
-Built for Stepoway Enterprises as a demonstration of SBE's integrated performance insight capabilities.
+Built for Stepowoy Enterprises as a demonstration of SBE's integrated performance insight capabilities.
 
 ---
 
-*"With SBE's integrated performance insight, Stepoway leaders can finally see how training drives real results—from the classroom to the job site to the P&L."*
+*"With SBE's integrated performance insight, Stepowoy leaders can finally see how training drives real results—from the classroom to the job site to the P&L."*

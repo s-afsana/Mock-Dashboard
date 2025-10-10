@@ -1,10 +1,10 @@
-Stepoway Enterprises — Contractor Performance Dashboard (Mockup)
+Stepowoy Enterprises — Contractor Performance Dashboard (Mockup)
 
-Purpose: Present a polished, executive-ready demo that shows how SBE training engagement connects to job performance and revenue outcomes for Stepoway Enterprises.
+Purpose: Present a polished, executive-ready demo that shows how SBE training engagement connects to job performance and revenue outcomes for Stepowoy Enterprises.
 
 1) Who this is for
 
-· Primary: Stepoway leadership (Owner/GM), Ops/Service Managers.
+· Primary: Stepowoy leadership (Owner/GM), Ops/Service Managers.
 
 · Secondary: Team Leads/Trainers; Finance for variance checks.
 
@@ -42,9 +42,9 @@ Notes: Each KPI has a short tooltip (plain English definition and data source la
 
 5) Dashboard layout (single screen)
 
-· Header: SBE + Stepoway logo marks, title, “Updated Hourly (demo)” timestamp, Light/Dark switch.
+· Header: SBE + Stepowoy logo marks, title, “Updated Hourly (demo)” timestamp, Light/Dark switch.
 
-· Filters: Contractor (fixed to Stepoway), Time Range (MTD/QTD/YTD), Rep (All + list).
+· Filters: Contractor (fixed to Stepowoy), Time Range (MTD/QTD/YTD), Rep (All + list).
 
 · KPI Row: 4 cards as above.
 
@@ -60,7 +60,7 @@ Notes: Each KPI has a short tooltip (plain English definition and data source la
 
 5. Financial Validation: CRM vs. QuickBooks monthly totals, variance %, status (green if within tolerance, amber if not).
 
-· Executive Caption (footer): “With SBE’s integrated performance insight, Stepoway leaders can finally see how training drives real results—from the classroom to the job site to the P&L.”
+· Executive Caption (footer): “With SBE’s integrated performance insight, Stepowoy leaders can finally see how training drives real results—from the classroom to the job site to the P&L.”
 
 6) Interactions (high level)
 
