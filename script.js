@@ -150,25 +150,25 @@ const correlationData = {
 const stackRankingData = {
     ytd: [
         {
-            name: 'Sophie',
-            level: 'Jr',
-            startDate: '9/15/2024',
-            closeRate: 50,
-            revenue: 141000,
-            jobs: 208,
-            avgTicket: 1423,
-            trainingScores: 'yellow',
-            trainingAttendance: 'green'
-        },
-        {
             name: 'Ava',
             level: 'Snr',
             startDate: '6/1/2023',
             closeRate: 68,
             revenue: 483000,
             jobs: 672,
-            avgTicket: 1247,
+            avgTicket: 720,
             trainingScores: 'green',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Sophie',
+            level: 'Jr',
+            startDate: '9/15/2024',
+            closeRate: 50,
+            revenue: 141000,
+            jobs: 208,
+            avgTicket: 680,
+            trainingScores: 'yellow',
             trainingAttendance: 'green'
         },
         {
@@ -178,8 +178,19 @@ const stackRankingData = {
             closeRate: 64,
             revenue: 496000,
             jobs: 714,
-            avgTicket: 1198,
+            avgTicket: 695,
             trainingScores: 'green',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Noah',
+            level: 'Mid',
+            startDate: '7/15/2023',
+            closeRate: 47,
+            revenue: 399000,
+            jobs: 615,
+            avgTicket: 650,
+            trainingScores: 'yellow',
             trainingAttendance: 'green'
         },
         {
@@ -189,20 +200,9 @@ const stackRankingData = {
             closeRate: 61,
             revenue: 264000,
             jobs: 518,
-            avgTicket: 1156,
+            avgTicket: 510,
             trainingScores: 'red',
             trainingAttendance: 'yellow'
-        },
-        {
-            name: 'Noah',
-            level: 'Mid',
-            startDate: '7/15/2023',
-            closeRate: 47,
-            revenue: 399000,
-            jobs: 615,
-            avgTicket: 1089,
-            trainingScores: 'yellow',
-            trainingAttendance: 'green'
         }
     ],
     qtd: [
@@ -213,7 +213,7 @@ const stackRankingData = {
             closeRate: 48,
             revenue: 95000,
             jobs: 140,
-            avgTicket: 1423,
+            avgTicket: 680,
             trainingScores: 'yellow',
             trainingAttendance: 'green'
         },
@@ -270,7 +270,7 @@ const stackRankingData = {
             closeRate: 52,
             revenue: 35000,
             jobs: 55,
-            avgTicket: 1423,
+            avgTicket: 680,
             trainingScores: 'yellow',
             trainingAttendance: 'green'
         },
@@ -281,7 +281,7 @@ const stackRankingData = {
             closeRate: 70,
             revenue: 120000,
             jobs: 180,
-            avgTicket: 1247,
+            avgTicket: 720,
             trainingScores: 'green',
             trainingAttendance: 'green'
         },
@@ -292,7 +292,7 @@ const stackRankingData = {
             closeRate: 68,
             revenue: 110000,
             jobs: 165,
-            avgTicket: 1198,
+            avgTicket: 695,
             trainingScores: 'green',
             trainingAttendance: 'green'
         },
@@ -303,7 +303,7 @@ const stackRankingData = {
             closeRate: 55,
             revenue: 65000,
             jobs: 120,
-            avgTicket: 1156,
+            avgTicket: 510,
             trainingScores: 'red',
             trainingAttendance: 'yellow'
         },
@@ -314,7 +314,7 @@ const stackRankingData = {
             closeRate: 50,
             revenue: 95000,
             jobs: 150,
-            avgTicket: 1089,
+            avgTicket: 650,
             trainingScores: 'yellow',
             trainingAttendance: 'green'
         }
@@ -513,7 +513,7 @@ function updateStackRanking(timeRange) {
             if (closeRateElement) closeRateElement.textContent = employee.closeRate + '%';
             
         const ticketElement = item.querySelector('.metric-value.ticket');
-        if (ticketElement) ticketElement.textContent = '$' + employee.avgTicket.toLocaleString();
+        if (ticketElement) ticketElement.textContent = '$' + employee.avgTicket;
             
             // Update status badges
             const statusBadges = item.querySelectorAll('.status-badge');

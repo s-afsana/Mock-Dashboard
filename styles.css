@@ -340,6 +340,8 @@ body.dark-theme .panel-header h3 {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+    text-align: center;
+    line-height: 1.2;
 }
 
 .drill-link {
@@ -822,12 +824,12 @@ canvas {
         gap: 1rem;
     }
     
-    .metric-with-icon {
+    .metric-with-label {
         min-width: 50px;
     }
     
-    .metric-icon {
-        font-size: 0.7rem;
+    .metric-label {
+        font-size: 0.6rem;
     }
     
     .metric-value {
@@ -1269,21 +1271,29 @@ body.dark-theme .employee-name {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-}
-
-.employee-level.snr {
-    background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+    background: #6b7280;
     color: white;
 }
 
-.employee-level.mid {
-    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-    color: white;
+.metric-with-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 60px;
+    position: relative;
 }
 
-.employee-level.jr {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: white;
+.metric-label {
+    font-size: 0.65rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+body.dark-theme .metric-label {
+    color: #94a3b8;
 }
 
 .key-metrics {
@@ -1332,7 +1342,11 @@ body.dark-theme .employee-name {
 }
 
 .metric-value.revenue {
-    color: #10b981;
+    color: #1e293b;
+}
+
+body.dark-theme .metric-value.revenue {
+    color: #f1f5f9;
 }
 
 .metric-value.close-rate {
