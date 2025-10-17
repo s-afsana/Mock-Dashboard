@@ -150,47 +150,25 @@ const correlationData = {
 const stackRankingData = {
     ytd: [
         {
-            name: 'Ava',
-            level: 'Snr',
-            startDate: '6/1/2023',
-            closeRate: 68,
-            revenue: 483000,
-            jobs: 672,
-            avgTicket: 720,
-            trainingScores: 'green',
-            trainingAttendance: 'green'
-        },
-        {
-            name: 'Noah',
-            level: 'Mid',
-            startDate: '7/15/2023',
-            closeRate: 47,
-            revenue: 399000,
-            jobs: 615,
-            avgTicket: 650,
-            trainingScores: 'yellow',
-            trainingAttendance: 'green'
-        },
-        {
-            name: 'Marcus',
-            level: 'Snr',
-            startDate: '1/1/2024',
-            closeRate: 61,
-            revenue: 264000,
-            jobs: 518,
-            avgTicket: 510,
-            trainingScores: 'red',
-            trainingAttendance: 'yellow'
-        },
-        {
             name: 'Sophie',
             level: 'Jr',
             startDate: '9/15/2024',
             closeRate: 50,
             revenue: 141000,
             jobs: 208,
-            avgTicket: 680,
+            avgTicket: 1423,
             trainingScores: 'yellow',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Ava',
+            level: 'Snr',
+            startDate: '6/1/2023',
+            closeRate: 68,
+            revenue: 483000,
+            jobs: 672,
+            avgTicket: 1247,
+            trainingScores: 'green',
             trainingAttendance: 'green'
         },
         {
@@ -200,12 +178,45 @@ const stackRankingData = {
             closeRate: 64,
             revenue: 496000,
             jobs: 714,
-            avgTicket: 695,
+            avgTicket: 1198,
             trainingScores: 'green',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Marcus',
+            level: 'Snr',
+            startDate: '1/1/2024',
+            closeRate: 61,
+            revenue: 264000,
+            jobs: 518,
+            avgTicket: 1156,
+            trainingScores: 'red',
+            trainingAttendance: 'yellow'
+        },
+        {
+            name: 'Noah',
+            level: 'Mid',
+            startDate: '7/15/2023',
+            closeRate: 47,
+            revenue: 399000,
+            jobs: 615,
+            avgTicket: 1089,
+            trainingScores: 'yellow',
             trainingAttendance: 'green'
         }
     ],
     qtd: [
+        {
+            name: 'Sophie',
+            level: 'Jr',
+            startDate: '9/15/2024',
+            closeRate: 48,
+            revenue: 95000,
+            jobs: 140,
+            avgTicket: 1423,
+            trainingScores: 'yellow',
+            trainingAttendance: 'green'
+        },
         {
             name: 'Ava',
             level: 'Snr',
@@ -214,6 +225,17 @@ const stackRankingData = {
             revenue: 320000,
             jobs: 450,
             avgTicket: 710,
+            trainingScores: 'green',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Liam',
+            level: 'Mid',
+            startDate: '3/1/2024',
+            closeRate: 62,
+            revenue: 330000,
+            jobs: 480,
+            avgTicket: 690,
             trainingScores: 'green',
             trainingAttendance: 'green'
         },
@@ -238,64 +260,9 @@ const stackRankingData = {
             avgTicket: 515,
             trainingScores: 'red',
             trainingAttendance: 'yellow'
-        },
-        {
-            name: 'Sophie',
-            level: 'Jr',
-            startDate: '9/15/2024',
-            closeRate: 48,
-            revenue: 95000,
-            jobs: 140,
-            avgTicket: 680,
-            trainingScores: 'yellow',
-            trainingAttendance: 'green'
-        },
-        {
-            name: 'Liam',
-            level: 'Mid',
-            startDate: '3/1/2024',
-            closeRate: 62,
-            revenue: 330000,
-            jobs: 480,
-            avgTicket: 690,
-            trainingScores: 'green',
-            trainingAttendance: 'green'
         }
     ],
     mtd: [
-        {
-            name: 'Ava',
-            level: 'Snr',
-            startDate: '6/1/2023',
-            closeRate: 70,
-            revenue: 120000,
-            jobs: 180,
-            avgTicket: 720,
-            trainingScores: 'green',
-            trainingAttendance: 'green'
-        },
-        {
-            name: 'Noah',
-            level: 'Mid',
-            startDate: '7/15/2023',
-            closeRate: 50,
-            revenue: 95000,
-            jobs: 150,
-            avgTicket: 650,
-            trainingScores: 'yellow',
-            trainingAttendance: 'green'
-        },
-        {
-            name: 'Marcus',
-            level: 'Snr',
-            startDate: '1/1/2024',
-            closeRate: 55,
-            revenue: 65000,
-            jobs: 120,
-            avgTicket: 510,
-            trainingScores: 'red',
-            trainingAttendance: 'yellow'
-        },
         {
             name: 'Sophie',
             level: 'Jr',
@@ -303,8 +270,19 @@ const stackRankingData = {
             closeRate: 52,
             revenue: 35000,
             jobs: 55,
-            avgTicket: 680,
+            avgTicket: 1423,
             trainingScores: 'yellow',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Ava',
+            level: 'Snr',
+            startDate: '6/1/2023',
+            closeRate: 70,
+            revenue: 120000,
+            jobs: 180,
+            avgTicket: 1247,
+            trainingScores: 'green',
             trainingAttendance: 'green'
         },
         {
@@ -314,8 +292,30 @@ const stackRankingData = {
             closeRate: 68,
             revenue: 110000,
             jobs: 165,
-            avgTicket: 695,
+            avgTicket: 1198,
             trainingScores: 'green',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Marcus',
+            level: 'Snr',
+            startDate: '1/1/2024',
+            closeRate: 55,
+            revenue: 65000,
+            jobs: 120,
+            avgTicket: 1156,
+            trainingScores: 'red',
+            trainingAttendance: 'yellow'
+        },
+        {
+            name: 'Noah',
+            level: 'Mid',
+            startDate: '7/15/2023',
+            closeRate: 50,
+            revenue: 95000,
+            jobs: 150,
+            avgTicket: 1089,
+            trainingScores: 'yellow',
             trainingAttendance: 'green'
         }
     ]
@@ -490,16 +490,20 @@ function updateStackRanking(timeRange) {
         if (rankingItems[index]) {
             const item = rankingItems[index];
             
-            // Update employee name
-            const nameElement = item.querySelector('.employee-name');
-            if (nameElement) nameElement.textContent = employee.name;
-            
-            // Update employee level
-            const levelElement = item.querySelector('.employee-level');
-            if (levelElement) {
-                levelElement.textContent = employee.level;
-                levelElement.className = `employee-level ${employee.level.toLowerCase()}`;
-            }
+        // Update ranking number
+        const rankingNumberElement = item.querySelector('.ranking-number');
+        if (rankingNumberElement) rankingNumberElement.textContent = index + 1;
+        
+        // Update employee name
+        const nameElement = item.querySelector('.employee-name');
+        if (nameElement) nameElement.textContent = employee.name;
+        
+        // Update employee level
+        const levelElement = item.querySelector('.employee-level');
+        if (levelElement) {
+            levelElement.textContent = employee.level;
+            levelElement.className = `employee-level ${employee.level.toLowerCase()}`;
+        }
             
             // Update key metrics
             const revenueElement = item.querySelector('.metric-value.revenue');
@@ -508,8 +512,8 @@ function updateStackRanking(timeRange) {
             const closeRateElement = item.querySelector('.metric-value.close-rate');
             if (closeRateElement) closeRateElement.textContent = employee.closeRate + '%';
             
-            const jobsElement = item.querySelector('.metric-value.jobs');
-            if (jobsElement) jobsElement.textContent = employee.jobs;
+        const ticketElement = item.querySelector('.metric-value.ticket');
+        if (ticketElement) ticketElement.textContent = '$' + employee.avgTicket.toLocaleString();
             
             // Update status badges
             const statusBadges = item.querySelectorAll('.status-badge');

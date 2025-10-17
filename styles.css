@@ -324,6 +324,24 @@ body.dark-theme .panel-header h3 {
     color: #f1f5f9;
 }
 
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stack-rank-indicator {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+}
+
 .drill-link {
     color: #4f46e5;
     text-decoration: none;
@@ -790,6 +808,12 @@ canvas {
         gap: 0.5rem;
     }
     
+    .ranking-number {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+    }
+    
     .employee-name {
         font-size: 0.9rem;
     }
@@ -812,6 +836,17 @@ canvas {
     
     .status-row {
         gap: 1.5rem;
+    }
+    
+    .header-controls {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-end;
+    }
+    
+    .stack-rank-indicator {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.6rem;
     }
     
     .status-item {
@@ -1201,6 +1236,21 @@ body.dark-theme .ranking-item:hover {
     min-width: 120px;
 }
 
+.ranking-number {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3);
+}
+
 .employee-name {
     font-size: 0.95rem;
     font-weight: 600;
@@ -1271,7 +1321,7 @@ body.dark-theme .employee-name {
     color: #f59e0b;
 }
 
-.jobs-icon {
+.ticket-icon {
     color: #4f46e5;
 }
 
@@ -1293,7 +1343,7 @@ body.dark-theme .metric-value.close-rate {
     color: #f1f5f9;
 }
 
-.metric-value.jobs {
+.metric-value.ticket {
     color: #4f46e5;
 }
 

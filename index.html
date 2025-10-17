@@ -107,48 +107,7 @@
 
     <!-- Main Dashboard Panels -->
     <div class="dashboard-grid">
-        <!-- Panel 1: Training Attendance Scorecard -->
-        <div class="panel">
-            <div class="panel-header">
-                <h3>Training Attendance</h3>
-                <a href="drill-in-training.html" class="drill-link">View details →</a>
-            </div>
-            <div class="panel-content">
-                <div class="scorecard-table">
-                    <div class="table-header">
-                        <div class="dept-column">Department</div>
-                        <div class="score-column">Last Quarter Dept Avg</div>
-                        <div class="score-column">Year to Date Dept Avg</div>
-                    </div>
-                    
-                    <div class="table-row">
-                        <div class="dept-cell">Customer Service</div>
-                        <div class="score-cell yellow">4.1 / 6</div>
-                        <div class="score-cell green">10.2 / 12</div>
-                    </div>
-                    
-                    <div class="table-row">
-                        <div class="dept-cell">Dispatch</div>
-                        <div class="score-cell red">1.8 / 6</div>
-                        <div class="score-cell yellow">9.5 / 12</div>
-                    </div>
-                    
-                    <div class="table-row">
-                        <div class="dept-cell">Plumbers</div>
-                        <div class="score-cell green">5.5 / 6</div>
-                        <div class="score-cell yellow">8.3 / 12</div>
-                    </div>
-                    
-                    <div class="table-row">
-                        <div class="dept-cell">Management</div>
-                        <div class="score-cell green">3.0 / 3</div>
-                        <div class="score-cell green">5.0 / 6</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Panel 2: Job Performance -->
+        <!-- Panel 1: Job Performance -->
         <div class="panel">
             <div class="panel-header">
                 <h3>Job Performance</h3>
@@ -190,6 +149,49 @@
             </div>
         </div>
 
+        <!-- Panel 2: Training Attendance Scorecard -->
+        <div class="panel">
+            <div class="panel-header">
+                <h3>Training Attendance</h3>
+                <a href="drill-in-training.html" class="drill-link">View details →</a>
+            </div>
+            <div class="panel-content">
+                <div class="scorecard-table">
+                    <div class="table-header">
+                        <div class="dept-column">Department</div>
+                        <div class="score-column">Last Quarter Dept Avg</div>
+                        <div class="score-column">Year to Date Dept Avg</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="dept-cell">Customer Service</div>
+                        <div class="score-cell yellow">4.1 / 6</div>
+                        <div class="score-cell green">10.2 / 12</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="dept-cell">Dispatch</div>
+                        <div class="score-cell red">1.8 / 6</div>
+                        <div class="score-cell yellow">9.5 / 12</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="dept-cell">Plumbers</div>
+                        <div class="score-cell green">5.5 / 6</div>
+                        <div class="score-cell yellow">8.3 / 12</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="dept-cell">Management</div>
+                        <div class="score-cell green">3.0 / 3</div>
+                        <div class="score-cell green">5.0 / 6</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
         <!-- Panel 3: Training Performance -->
         <div class="panel">
             <div class="panel-header">
@@ -220,63 +222,33 @@
         <div class="panel">
             <div class="panel-header">
                 <h3>Stack Ranking by Tech</h3>
-                <span class="period-label">Period [YtD]</span>
+                <div class="header-controls">
+                    <div class="stack-rank-indicator">Stack Rank By Avg Ticket</div>
+                    <span class="period-label">Period [YtD]</span>
+                </div>
             </div>
             <div class="panel-content">
                 <div class="compact-ranking-list">
-                    <!-- Ava -->
-                    <div class="ranking-item" data-employee="ava">
+                    <!-- Sophie (1st - Highest Avg Ticket: $1,423) -->
+                    <div class="ranking-item" data-employee="sophie">
                         <div class="main-row">
                             <div class="rank-info">
-                                <div class="employee-name">Ava</div>
-                                <div class="employee-level snr">Snr</div>
+                                <div class="ranking-number">1</div>
+                                <div class="employee-name">Sophie</div>
+                                <div class="employee-level jr">Jr</div>
                             </div>
                             <div class="key-metrics">
+                                <div class="metric-with-icon" data-tooltip="Average Ticket">
+                                    <i class="fas fa-receipt metric-icon ticket-icon"></i>
+                                    <span class="metric-value ticket">$1,423</span>
+                                </div>
                                 <div class="metric-with-icon" data-tooltip="Revenue">
                                     <i class="fas fa-dollar-sign metric-icon revenue-icon"></i>
-                                    <span class="metric-value revenue">$483K</span>
+                                    <span class="metric-value revenue">$141K</span>
                                 </div>
                                 <div class="metric-with-icon" data-tooltip="Close Rate">
                                     <i class="fas fa-bullseye metric-icon rate-icon"></i>
-                                    <span class="metric-value close-rate">68%</span>
-                                </div>
-                                <div class="metric-with-icon" data-tooltip="Jobs Completed">
-                                    <i class="fas fa-tasks metric-icon jobs-icon"></i>
-                                    <span class="metric-value jobs">672</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="status-row">
-                            <div class="status-item">
-                                <span class="status-label">Training</span>
-                                <span class="status-badge green">Green</span>
-                            </div>
-                            <div class="status-item">
-                                <span class="status-label">Attendance</span>
-                                <span class="status-badge green">Green</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Noah -->
-                    <div class="ranking-item" data-employee="noah">
-                        <div class="main-row">
-                            <div class="rank-info">
-                                <div class="employee-name">Noah</div>
-                                <div class="employee-level mid">Mid</div>
-                            </div>
-                            <div class="key-metrics">
-                                <div class="metric-with-icon" data-tooltip="Revenue">
-                                    <i class="fas fa-dollar-sign metric-icon revenue-icon"></i>
-                                    <span class="metric-value revenue">$399K</span>
-                                </div>
-                                <div class="metric-with-icon" data-tooltip="Close Rate">
-                                    <i class="fas fa-bullseye metric-icon rate-icon"></i>
-                                    <span class="metric-value close-rate">47%</span>
-                                </div>
-                                <div class="metric-with-icon" data-tooltip="Jobs Completed">
-                                    <i class="fas fa-tasks metric-icon jobs-icon"></i>
-                                    <span class="metric-value jobs">615</span>
+                                    <span class="metric-value close-rate">50%</span>
                                 </div>
                             </div>
                         </div>
@@ -292,14 +264,89 @@
                         </div>
                     </div>
 
-                    <!-- Marcus -->
+                    <!-- Ava (2nd - Avg Ticket: $1,247) -->
+                    <div class="ranking-item" data-employee="ava">
+                        <div class="main-row">
+                            <div class="rank-info">
+                                <div class="ranking-number">2</div>
+                                <div class="employee-name">Ava</div>
+                                <div class="employee-level snr">Snr</div>
+                            </div>
+                            <div class="key-metrics">
+                                <div class="metric-with-icon" data-tooltip="Average Ticket">
+                                    <i class="fas fa-receipt metric-icon ticket-icon"></i>
+                                    <span class="metric-value ticket">$1,247</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Revenue">
+                                    <i class="fas fa-dollar-sign metric-icon revenue-icon"></i>
+                                    <span class="metric-value revenue">$483K</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Close Rate">
+                                    <i class="fas fa-bullseye metric-icon rate-icon"></i>
+                                    <span class="metric-value close-rate">68%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-row">
+                            <div class="status-item">
+                                <span class="status-label">Training</span>
+                                <span class="status-badge green">Green</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Attendance</span>
+                                <span class="status-badge green">Green</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Liam (3rd - Avg Ticket: $1,198) -->
+                    <div class="ranking-item" data-employee="liam">
+                        <div class="main-row">
+                            <div class="rank-info">
+                                <div class="ranking-number">3</div>
+                                <div class="employee-name">Liam</div>
+                                <div class="employee-level mid">Mid</div>
+                            </div>
+                            <div class="key-metrics">
+                                <div class="metric-with-icon" data-tooltip="Average Ticket">
+                                    <i class="fas fa-receipt metric-icon ticket-icon"></i>
+                                    <span class="metric-value ticket">$1,198</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Revenue">
+                                    <i class="fas fa-dollar-sign metric-icon revenue-icon"></i>
+                                    <span class="metric-value revenue">$496K</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Close Rate">
+                                    <i class="fas fa-bullseye metric-icon rate-icon"></i>
+                                    <span class="metric-value close-rate">64%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-row">
+                            <div class="status-item">
+                                <span class="status-label">Training</span>
+                                <span class="status-badge green">Green</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Attendance</span>
+                                <span class="status-badge green">Green</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Marcus (4th - Avg Ticket: $1,156) -->
                     <div class="ranking-item" data-employee="marcus">
                         <div class="main-row">
                             <div class="rank-info">
+                                <div class="ranking-number">4</div>
                                 <div class="employee-name">Marcus</div>
                                 <div class="employee-level snr">Snr</div>
                             </div>
                             <div class="key-metrics">
+                                <div class="metric-with-icon" data-tooltip="Average Ticket">
+                                    <i class="fas fa-receipt metric-icon ticket-icon"></i>
+                                    <span class="metric-value ticket">$1,156</span>
+                                </div>
                                 <div class="metric-with-icon" data-tooltip="Revenue">
                                     <i class="fas fa-dollar-sign metric-icon revenue-icon"></i>
                                     <span class="metric-value revenue">$264K</span>
@@ -307,10 +354,6 @@
                                 <div class="metric-with-icon" data-tooltip="Close Rate">
                                     <i class="fas fa-bullseye metric-icon rate-icon"></i>
                                     <span class="metric-value close-rate">61%</span>
-                                </div>
-                                <div class="metric-with-icon" data-tooltip="Jobs Completed">
-                                    <i class="fas fa-tasks metric-icon jobs-icon"></i>
-                                    <span class="metric-value jobs">518</span>
                                 </div>
                             </div>
                         </div>
@@ -326,25 +369,26 @@
                         </div>
                     </div>
 
-                    <!-- Sophie -->
-                    <div class="ranking-item" data-employee="sophie">
+                    <!-- Noah (5th - Lowest Avg Ticket: $1,089) -->
+                    <div class="ranking-item" data-employee="noah">
                         <div class="main-row">
                             <div class="rank-info">
-                                <div class="employee-name">Sophie</div>
-                                <div class="employee-level jr">Jr</div>
+                                <div class="ranking-number">5</div>
+                                <div class="employee-name">Noah</div>
+                                <div class="employee-level mid">Mid</div>
                             </div>
                             <div class="key-metrics">
+                                <div class="metric-with-icon" data-tooltip="Average Ticket">
+                                    <i class="fas fa-receipt metric-icon ticket-icon"></i>
+                                    <span class="metric-value ticket">$1,089</span>
+                                </div>
                                 <div class="metric-with-icon" data-tooltip="Revenue">
                                     <i class="fas fa-dollar-sign metric-icon revenue-icon"></i>
-                                    <span class="metric-value revenue">$141K</span>
+                                    <span class="metric-value revenue">$399K</span>
                                 </div>
                                 <div class="metric-with-icon" data-tooltip="Close Rate">
                                     <i class="fas fa-bullseye metric-icon rate-icon"></i>
-                                    <span class="metric-value close-rate">50%</span>
-                                </div>
-                                <div class="metric-with-icon" data-tooltip="Jobs Completed">
-                                    <i class="fas fa-tasks metric-icon jobs-icon"></i>
-                                    <span class="metric-value jobs">208</span>
+                                    <span class="metric-value close-rate">47%</span>
                                 </div>
                             </div>
                         </div>
@@ -352,40 +396,6 @@
                             <div class="status-item">
                                 <span class="status-label">Training</span>
                                 <span class="status-badge yellow">Yellow</span>
-                            </div>
-                            <div class="status-item">
-                                <span class="status-label">Attendance</span>
-                                <span class="status-badge green">Green</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Liam -->
-                    <div class="ranking-item" data-employee="liam">
-                        <div class="main-row">
-                            <div class="rank-info">
-                                <div class="employee-name">Liam</div>
-                                <div class="employee-level mid">Mid</div>
-                            </div>
-                            <div class="key-metrics">
-                                <div class="metric-with-icon" data-tooltip="Revenue">
-                                    <i class="fas fa-dollar-sign metric-icon revenue-icon"></i>
-                                    <span class="metric-value revenue">$496K</span>
-                                </div>
-                                <div class="metric-with-icon" data-tooltip="Close Rate">
-                                    <i class="fas fa-bullseye metric-icon rate-icon"></i>
-                                    <span class="metric-value close-rate">64%</span>
-                                </div>
-                                <div class="metric-with-icon" data-tooltip="Jobs Completed">
-                                    <i class="fas fa-tasks metric-icon jobs-icon"></i>
-                                    <span class="metric-value jobs">714</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="status-row">
-                            <div class="status-item">
-                                <span class="status-label">Training</span>
-                                <span class="status-badge green">Green</span>
                             </div>
                             <div class="status-item">
                                 <span class="status-label">Attendance</span>
