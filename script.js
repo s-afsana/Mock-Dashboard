@@ -161,17 +161,6 @@ const stackRankingData = {
             trainingAttendance: 'green'
         },
         {
-            name: 'Sophie',
-            level: 'Jr',
-            startDate: '9/15/2024',
-            closeRate: 50,
-            revenue: 141000,
-            jobs: 208,
-            avgTicket: 680,
-            trainingScores: 'yellow',
-            trainingAttendance: 'green'
-        },
-        {
             name: 'Liam',
             level: 'Mid',
             startDate: '3/1/2024',
@@ -180,6 +169,17 @@ const stackRankingData = {
             jobs: 714,
             avgTicket: 695,
             trainingScores: 'green',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Sophie',
+            level: 'Jr',
+            startDate: '9/15/2024',
+            closeRate: 50,
+            revenue: 141000,
+            jobs: 208,
+            avgTicket: 680,
+            trainingScores: 'yellow',
             trainingAttendance: 'green'
         },
         {
@@ -207,17 +207,6 @@ const stackRankingData = {
     ],
     qtd: [
         {
-            name: 'Sophie',
-            level: 'Jr',
-            startDate: '9/15/2024',
-            closeRate: 48,
-            revenue: 95000,
-            jobs: 140,
-            avgTicket: 680,
-            trainingScores: 'yellow',
-            trainingAttendance: 'green'
-        },
-        {
             name: 'Ava',
             level: 'Snr',
             startDate: '6/1/2023',
@@ -237,6 +226,17 @@ const stackRankingData = {
             jobs: 480,
             avgTicket: 690,
             trainingScores: 'green',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Sophie',
+            level: 'Jr',
+            startDate: '9/15/2024',
+            closeRate: 48,
+            revenue: 95000,
+            jobs: 140,
+            avgTicket: 680,
+            trainingScores: 'yellow',
             trainingAttendance: 'green'
         },
         {
@@ -264,17 +264,6 @@ const stackRankingData = {
     ],
     mtd: [
         {
-            name: 'Sophie',
-            level: 'Jr',
-            startDate: '9/15/2024',
-            closeRate: 52,
-            revenue: 35000,
-            jobs: 55,
-            avgTicket: 680,
-            trainingScores: 'yellow',
-            trainingAttendance: 'green'
-        },
-        {
             name: 'Ava',
             level: 'Snr',
             startDate: '6/1/2023',
@@ -297,15 +286,15 @@ const stackRankingData = {
             trainingAttendance: 'green'
         },
         {
-            name: 'Marcus',
-            level: 'Snr',
-            startDate: '1/1/2024',
-            closeRate: 55,
-            revenue: 65000,
-            jobs: 120,
-            avgTicket: 510,
-            trainingScores: 'red',
-            trainingAttendance: 'yellow'
+            name: 'Sophie',
+            level: 'Jr',
+            startDate: '9/15/2024',
+            closeRate: 52,
+            revenue: 35000,
+            jobs: 55,
+            avgTicket: 680,
+            trainingScores: 'yellow',
+            trainingAttendance: 'green'
         },
         {
             name: 'Noah',
@@ -317,6 +306,17 @@ const stackRankingData = {
             avgTicket: 650,
             trainingScores: 'yellow',
             trainingAttendance: 'green'
+        },
+        {
+            name: 'Marcus',
+            level: 'Snr',
+            startDate: '1/1/2024',
+            closeRate: 55,
+            revenue: 65000,
+            jobs: 120,
+            avgTicket: 510,
+            trainingScores: 'red',
+            trainingAttendance: 'yellow'
         }
     ]
 };
