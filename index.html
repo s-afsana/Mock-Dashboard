@@ -148,8 +148,7 @@
             </div>
         </div>
 
-
-        <!-- Panel 3: Job Performance -->
+        <!-- Panel 2: Job Performance -->
         <div class="panel">
             <div class="panel-header">
                 <h3>Job Performance</h3>
@@ -191,7 +190,7 @@
             </div>
         </div>
 
-        <!-- Panel 4: Training Performance -->
+        <!-- Panel 3: Training Performance -->
         <div class="panel">
             <div class="panel-header">
                 <h3>Training Performance</h3>
@@ -213,6 +212,187 @@
                 </div>
                 <div class="training-correlation">
                     <canvas id="correlationChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 4: Stack Ranking by Tech -->
+        <div class="panel">
+            <div class="panel-header">
+                <h3>Stack Ranking by Tech</h3>
+                <span class="period-label">Period [YtD]</span>
+            </div>
+            <div class="panel-content">
+                <div class="compact-ranking-list">
+                    <!-- Ava -->
+                    <div class="ranking-item" data-employee="ava">
+                        <div class="main-row">
+                            <div class="rank-info">
+                                <div class="employee-name">Ava</div>
+                                <div class="employee-level snr">Snr</div>
+                            </div>
+                            <div class="key-metrics">
+                                <div class="metric-with-icon" data-tooltip="Revenue">
+                                    <i class="fas fa-dollar-sign metric-icon revenue-icon"></i>
+                                    <span class="metric-value revenue">$483K</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Close Rate">
+                                    <i class="fas fa-bullseye metric-icon rate-icon"></i>
+                                    <span class="metric-value close-rate">68%</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Jobs Completed">
+                                    <i class="fas fa-tasks metric-icon jobs-icon"></i>
+                                    <span class="metric-value jobs">672</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-row">
+                            <div class="status-item">
+                                <span class="status-label">Training</span>
+                                <span class="status-badge green">Green</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Attendance</span>
+                                <span class="status-badge green">Green</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Noah -->
+                    <div class="ranking-item" data-employee="noah">
+                        <div class="main-row">
+                            <div class="rank-info">
+                                <div class="employee-name">Noah</div>
+                                <div class="employee-level mid">Mid</div>
+                            </div>
+                            <div class="key-metrics">
+                                <div class="metric-with-icon" data-tooltip="Revenue">
+                                    <i class="fas fa-dollar-sign metric-icon revenue-icon"></i>
+                                    <span class="metric-value revenue">$399K</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Close Rate">
+                                    <i class="fas fa-bullseye metric-icon rate-icon"></i>
+                                    <span class="metric-value close-rate">47%</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Jobs Completed">
+                                    <i class="fas fa-tasks metric-icon jobs-icon"></i>
+                                    <span class="metric-value jobs">615</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-row">
+                            <div class="status-item">
+                                <span class="status-label">Training</span>
+                                <span class="status-badge yellow">Yellow</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Attendance</span>
+                                <span class="status-badge green">Green</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Marcus -->
+                    <div class="ranking-item" data-employee="marcus">
+                        <div class="main-row">
+                            <div class="rank-info">
+                                <div class="employee-name">Marcus</div>
+                                <div class="employee-level snr">Snr</div>
+                            </div>
+                            <div class="key-metrics">
+                                <div class="metric-with-icon" data-tooltip="Revenue">
+                                    <i class="fas fa-dollar-sign metric-icon revenue-icon"></i>
+                                    <span class="metric-value revenue">$264K</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Close Rate">
+                                    <i class="fas fa-bullseye metric-icon rate-icon"></i>
+                                    <span class="metric-value close-rate">61%</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Jobs Completed">
+                                    <i class="fas fa-tasks metric-icon jobs-icon"></i>
+                                    <span class="metric-value jobs">518</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-row">
+                            <div class="status-item">
+                                <span class="status-label">Training</span>
+                                <span class="status-badge red">Red</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Attendance</span>
+                                <span class="status-badge yellow">Yellow</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sophie -->
+                    <div class="ranking-item" data-employee="sophie">
+                        <div class="main-row">
+                            <div class="rank-info">
+                                <div class="employee-name">Sophie</div>
+                                <div class="employee-level jr">Jr</div>
+                            </div>
+                            <div class="key-metrics">
+                                <div class="metric-with-icon" data-tooltip="Revenue">
+                                    <i class="fas fa-dollar-sign metric-icon revenue-icon"></i>
+                                    <span class="metric-value revenue">$141K</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Close Rate">
+                                    <i class="fas fa-bullseye metric-icon rate-icon"></i>
+                                    <span class="metric-value close-rate">50%</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Jobs Completed">
+                                    <i class="fas fa-tasks metric-icon jobs-icon"></i>
+                                    <span class="metric-value jobs">208</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-row">
+                            <div class="status-item">
+                                <span class="status-label">Training</span>
+                                <span class="status-badge yellow">Yellow</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Attendance</span>
+                                <span class="status-badge green">Green</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Liam -->
+                    <div class="ranking-item" data-employee="liam">
+                        <div class="main-row">
+                            <div class="rank-info">
+                                <div class="employee-name">Liam</div>
+                                <div class="employee-level mid">Mid</div>
+                            </div>
+                            <div class="key-metrics">
+                                <div class="metric-with-icon" data-tooltip="Revenue">
+                                    <i class="fas fa-dollar-sign metric-icon revenue-icon"></i>
+                                    <span class="metric-value revenue">$496K</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Close Rate">
+                                    <i class="fas fa-bullseye metric-icon rate-icon"></i>
+                                    <span class="metric-value close-rate">64%</span>
+                                </div>
+                                <div class="metric-with-icon" data-tooltip="Jobs Completed">
+                                    <i class="fas fa-tasks metric-icon jobs-icon"></i>
+                                    <span class="metric-value jobs">714</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-row">
+                            <div class="status-item">
+                                <span class="status-label">Training</span>
+                                <span class="status-badge green">Green</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Attendance</span>
+                                <span class="status-badge green">Green</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

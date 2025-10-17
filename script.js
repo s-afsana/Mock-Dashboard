@@ -146,6 +146,181 @@ const correlationData = {
     ]
 };
 
+// Stack Ranking Data
+const stackRankingData = {
+    ytd: [
+        {
+            name: 'Ava',
+            level: 'Snr',
+            startDate: '6/1/2023',
+            closeRate: 68,
+            revenue: 483000,
+            jobs: 672,
+            avgTicket: 720,
+            trainingScores: 'green',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Noah',
+            level: 'Mid',
+            startDate: '7/15/2023',
+            closeRate: 47,
+            revenue: 399000,
+            jobs: 615,
+            avgTicket: 650,
+            trainingScores: 'yellow',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Marcus',
+            level: 'Snr',
+            startDate: '1/1/2024',
+            closeRate: 61,
+            revenue: 264000,
+            jobs: 518,
+            avgTicket: 510,
+            trainingScores: 'red',
+            trainingAttendance: 'yellow'
+        },
+        {
+            name: 'Sophie',
+            level: 'Jr',
+            startDate: '9/15/2024',
+            closeRate: 50,
+            revenue: 141000,
+            jobs: 208,
+            avgTicket: 680,
+            trainingScores: 'yellow',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Liam',
+            level: 'Mid',
+            startDate: '3/1/2024',
+            closeRate: 64,
+            revenue: 496000,
+            jobs: 714,
+            avgTicket: 695,
+            trainingScores: 'green',
+            trainingAttendance: 'green'
+        }
+    ],
+    qtd: [
+        {
+            name: 'Ava',
+            level: 'Snr',
+            startDate: '6/1/2023',
+            closeRate: 65,
+            revenue: 320000,
+            jobs: 450,
+            avgTicket: 710,
+            trainingScores: 'green',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Noah',
+            level: 'Mid',
+            startDate: '7/15/2023',
+            closeRate: 45,
+            revenue: 280000,
+            jobs: 420,
+            avgTicket: 665,
+            trainingScores: 'yellow',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Marcus',
+            level: 'Snr',
+            startDate: '1/1/2024',
+            closeRate: 58,
+            revenue: 180000,
+            jobs: 350,
+            avgTicket: 515,
+            trainingScores: 'red',
+            trainingAttendance: 'yellow'
+        },
+        {
+            name: 'Sophie',
+            level: 'Jr',
+            startDate: '9/15/2024',
+            closeRate: 48,
+            revenue: 95000,
+            jobs: 140,
+            avgTicket: 680,
+            trainingScores: 'yellow',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Liam',
+            level: 'Mid',
+            startDate: '3/1/2024',
+            closeRate: 62,
+            revenue: 330000,
+            jobs: 480,
+            avgTicket: 690,
+            trainingScores: 'green',
+            trainingAttendance: 'green'
+        }
+    ],
+    mtd: [
+        {
+            name: 'Ava',
+            level: 'Snr',
+            startDate: '6/1/2023',
+            closeRate: 70,
+            revenue: 120000,
+            jobs: 180,
+            avgTicket: 720,
+            trainingScores: 'green',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Noah',
+            level: 'Mid',
+            startDate: '7/15/2023',
+            closeRate: 50,
+            revenue: 95000,
+            jobs: 150,
+            avgTicket: 650,
+            trainingScores: 'yellow',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Marcus',
+            level: 'Snr',
+            startDate: '1/1/2024',
+            closeRate: 55,
+            revenue: 65000,
+            jobs: 120,
+            avgTicket: 510,
+            trainingScores: 'red',
+            trainingAttendance: 'yellow'
+        },
+        {
+            name: 'Sophie',
+            level: 'Jr',
+            startDate: '9/15/2024',
+            closeRate: 52,
+            revenue: 35000,
+            jobs: 55,
+            avgTicket: 680,
+            trainingScores: 'yellow',
+            trainingAttendance: 'green'
+        },
+        {
+            name: 'Liam',
+            level: 'Mid',
+            startDate: '3/1/2024',
+            closeRate: 68,
+            revenue: 110000,
+            jobs: 165,
+            avgTicket: 695,
+            trainingScores: 'green',
+            trainingAttendance: 'green'
+        }
+    ]
+};
+
 // Initialize charts when page loads
 document.addEventListener('DOMContentLoaded', function() {
     initializeCharts();
@@ -187,6 +362,9 @@ function updateDashboard() {
     
     // Update charts
     updateCharts(timeRange, repFilter);
+    
+    // Update stack ranking table
+    updateStackRanking(timeRange);
     
     // Add loading effect
     document.body.classList.add('loading');
@@ -299,6 +477,52 @@ function updateCharts(timeRange, repFilter) {
     // This would update chart data based on filters
     // For demo purposes, we'll just add some visual feedback
     console.log(`Updating charts for ${timeRange} and ${repFilter}`);
+}
+
+// Update stack ranking list based on time range
+function updateStackRanking(timeRange) {
+    const data = stackRankingData[timeRange];
+    if (!data) return;
+    
+    const rankingItems = document.querySelectorAll('.ranking-item');
+    
+    data.forEach((employee, index) => {
+        if (rankingItems[index]) {
+            const item = rankingItems[index];
+            
+            // Update employee name
+            const nameElement = item.querySelector('.employee-name');
+            if (nameElement) nameElement.textContent = employee.name;
+            
+            // Update employee level
+            const levelElement = item.querySelector('.employee-level');
+            if (levelElement) {
+                levelElement.textContent = employee.level;
+                levelElement.className = `employee-level ${employee.level.toLowerCase()}`;
+            }
+            
+            // Update key metrics
+            const revenueElement = item.querySelector('.metric-value.revenue');
+            if (revenueElement) revenueElement.textContent = '$' + (employee.revenue / 1000) + 'K';
+            
+            const closeRateElement = item.querySelector('.metric-value.close-rate');
+            if (closeRateElement) closeRateElement.textContent = employee.closeRate + '%';
+            
+            const jobsElement = item.querySelector('.metric-value.jobs');
+            if (jobsElement) jobsElement.textContent = employee.jobs;
+            
+            // Update status badges
+            const statusBadges = item.querySelectorAll('.status-badge');
+            if (statusBadges[0]) {
+                statusBadges[0].textContent = employee.trainingScores.charAt(0).toUpperCase() + employee.trainingScores.slice(1);
+                statusBadges[0].className = `status-badge ${employee.trainingScores}`;
+            }
+            if (statusBadges[1]) {
+                statusBadges[1].textContent = employee.trainingAttendance.charAt(0).toUpperCase() + employee.trainingAttendance.slice(1);
+                statusBadges[1].className = `status-badge ${employee.trainingAttendance}`;
+            }
+        }
+    });
 }
 
 // Add tooltip functionality
